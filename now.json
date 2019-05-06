@@ -3,5 +3,9 @@
   "name": "nextjs",
   "builds": [
       { "src": "package.json", "use": "@now/next" }
-  ]
+  ],
+  "env": {
+    "SPACE_ID": "his6ww2xbyvl",
+    "ACCESS_TOKEN": "@access_token_secret"
+  }
 }
