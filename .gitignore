@@ -1,0 +1,12 @@
+# dependencies
+node_modules
+localStorage
+
+# production
+.next
+
+# misc
+.data-*
+.env
+.DS_Store
+*.log
