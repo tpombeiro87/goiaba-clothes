@@ -28,7 +28,7 @@ module.exports = {
       generators: true,
     },
   },
-  rules: Object.assign({}, a11yLintRules, performanceRules, {
+  rules: {
     'comma-dangle': ['error', 'always-multiline'],
     complexity: ['warn', { max: 7 }],
     'filenames/match-regex': ['warn', '^_?[a-z0-9-.]+$'],
@@ -72,5 +72,5 @@ module.exports = {
     'react-hooks/rules-of-hooks': 'error',
     'no-nested-ternary': 'warn',
     'no-unneeded-ternary': 'warn',
-  })
+  }
 }
