@@ -1,19 +1,8 @@
 {
-  "name": "Next.js Demo Store",
+  "name": "Goiaba clothes site",
   "description": "A barebones Next.js store powered by moltin",
-  "repository": "https://github.com/moltin/nextjs-demo-store",
+  "repository": "https://gitlab.com/tpombeiro87/goiaba-clothes",
   "logo": "https://www.moltin.com/img/icons/favicons/apple-touch-icon.png",
-  "keywords": ["moltin", "react", "ecommerce", "next.js", "ssr"],
-  "success_url": "/",
-  "env": {
-    "MOLTIN_CLIENT_ID": {
-      "description":
-        "The client_is is the unique ID associated with your store. You can find this inside your moltin Dashboard.",
-      "value": "EdP3Gi1agyUF3yFS7Ngm8iyodLgbSR3wY4ceoJl0d2"
-    },
-    "STRIPE_KEY": {
-      "description":
-        "Your Stripe publishable key. You will need the secret key added to the Moltin Dashboard for Stripe checkout to work correctly."
-    }
-  }
+  "keywords": ["goiaba", "clothes", "site"],
+  "success_url": "/"
 }
