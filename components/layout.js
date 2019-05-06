@@ -11,7 +11,7 @@ injectGlobal`
     height: 100%;
     margin: 0;
     width: 100%;
-    font-family: Helvetica;
+    font-family: Arial, sans-serif;
   }
 `
 
@@ -45,11 +45,15 @@ export default class Layout extends Component {
 
     return (
       <Root>
-        {title &&
-          <Head>
-            <title>Goiaba - {title}</title>
-          </Head>
-        }
+        <Head>
+          <title>
+            {
+              title
+                ? `Goiaba - ${title}`
+                : `Goiaba - site`
+            }
+          </title>
+        </Head>
 
         <Header />
 
