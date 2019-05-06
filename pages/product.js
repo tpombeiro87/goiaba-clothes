@@ -40,7 +40,7 @@ const ProductPrice = styled.h3`
   font-weight: 700;
 `
 
-const ProductPage = ({ product }) => (
+const ProductPage = ({ product = { fields: { photos: [], file: {} } } }) => (
   <RegularPage>
     <Link href={`/products-list`} passHref prefetch>&#60; Voltar a todos os produtos</Link>
     <Wrapper>

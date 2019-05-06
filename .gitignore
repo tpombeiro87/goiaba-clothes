@@ -4,9 +4,11 @@ localStorage
 
 # production
 .next
+/out
 
 # misc
 .data-*
 .env
 .DS_Store
 *.log
+
