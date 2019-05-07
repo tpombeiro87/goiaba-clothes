@@ -42,7 +42,10 @@ const ProductThumbnail = styled.img`
   height: 442px;
   background-repeat: no-repeat;
   background-size: 327px 442px;
-  ${props => `content: url('${props.mainImage}');`}
+  ${props => `
+    content: url('${props.mainImage}');
+    background-image: url('${props.mainImage}');
+  `}
   :hover {
     ${props => props.hoverImage && `
     content: url('${props.hoverImage}');
