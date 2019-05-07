@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import Link from 'next/link'
 import styled from 'styled-components'
 
@@ -116,7 +116,10 @@ class ProductList extends Component {
                       key={product.fields.slug}
                       hoverImage={hoverImage}
                       mainImage={mainImage} />
-                    <ProductTitle>{product.fields.title}</ProductTitle>
+                    <ProductTitle>
+                      {product.fields.highlight && <Fragment><img alt='Destacado' src='/static/star.png' />&nbsp;</Fragment> }
+                      {product.fields.title}
+                    </ProductTitle>
                     <ProductPrice>{product.fields.price} €</ProductPrice>
                   </ProductWrapper>
                 </Link>

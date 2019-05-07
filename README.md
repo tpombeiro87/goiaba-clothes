@@ -7,7 +7,7 @@ Product page
 * preatify
 * carosell images
 * slug on url
-
+* reload produtos n esta a bombar
 
 Beatiffy pages
 --------------
@@ -23,13 +23,8 @@ misc
 
 * header getting smaller on scroll
 * btn scrool to top
-* Set all font
 * Create a tutorial video of edition on contenful
 * Product list  laazy loading
-* images preloading
-* heighlight sorting icons
-
-* novidades text home page
 
 RESPONSIVE
 ----------
@@ -43,6 +38,7 @@ home page
 
 * image novidades
 * link
+* novidades text home page
 
 
 SECONDARY
