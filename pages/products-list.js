@@ -117,7 +117,7 @@ class ProductList extends Component {
                       hoverImage={hoverImage}
                       mainImage={mainImage} />
                     <ProductTitle>
-                      {product.fields.highlight && <Fragment><img alt='Destacado' src='/static/star.png' />&nbsp;</Fragment> }
+                      {product.fields.highlight && <Fragment><img alt='Destacado' src='/static/icons/star.png' />&nbsp;</Fragment> }
                       {product.fields.title}
                     </ProductTitle>
                     <ProductPrice>{product.fields.price} €</ProductPrice>

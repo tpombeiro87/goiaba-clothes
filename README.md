@@ -30,6 +30,7 @@ RESPONSIVE
 ----------
 
 * Header (hamburguer menu)
+  - animation slide menu
 * Footer
 * Layouts
 

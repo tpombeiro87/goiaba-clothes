@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import Head from 'next/head'
 import styled, { injectGlobal } from 'styled-components'
 
-import Header from './header'
+import { wideVersionMediaQuery } from './utils/responsive-utils'
+import Header from './header/index.js'
 import Footer from './footer'
 
 injectGlobal`
@@ -12,6 +13,7 @@ injectGlobal`
     margin: 0;
     width: 100%;
     font-family: Arial, sans-serif;
+    min-width: 320px;
   }
 `
 
@@ -31,7 +33,9 @@ const Main = styled.main`
   padding-left: 10px;
   margin-right: auto;
   margin-left: auto;
-  width: 1045px;
+  @media ${wideVersionMediaQuery} {
+    width: 1045px;
+  }
 `
 
 export default class Layout extends Component {
