@@ -31,15 +31,7 @@ RESPONSIVE
 
 * Header (hamburguer menu)
   - animation slide menu
-* Footer
 * Layouts
-
-home page
----------
-
-* image novidades
-* link
-* novidades text home page
 
 
 SECONDARY

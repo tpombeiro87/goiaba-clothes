@@ -6,6 +6,7 @@ import styled, { injectGlobal } from 'styled-components'
 import { wideVersionMediaQuery } from './utils/responsive-utils'
 import Header from './header/index.js'
 import Footer from './footer'
+import ScrollToTopBtn from './scroll-to-top-btn'
 
 injectGlobal`
   html, body, #root {
@@ -33,66 +34,30 @@ const Main = styled.main`
   margin-right: auto;
   margin-left: auto;
   @media ${wideVersionMediaQuery} {
-    padding-top: 85px;
+    margin-top: 55px;
     width: 1045px;
   }
 `
 
-const ScrollToTopBtn = styled.button`
-  z-index: 999;
-  text-decoration: none;
-  position: fixed;
-  bottom: 30px;
-  right: 10px;
-  overflow: hidden;
-  width: 36px;
-  height: 36px;
-  border: none;
-  background-color: #7f7f7f;
-  font-size: 0;
-  border-radius: 36px;
-  -moz-border-radius: 36px;
-  cursor: pointer;
-  transition: all .3s linear;
-
-  :hover {
-    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.35);
-  }
-  :focus {
-    outline: none;
-  }
-`
-
-const Triangle = styled.span`
-  width: 0;
-  height: 0;
-  display: block;
-  overflow: hidden;
-  float: left;
-  opacity: 1!important;
-  font-size: 0;
-  -moz-opacity: 1!important;
-  filter: alpha(opacity=100)!important;
-  border-left: solid 6px transparent;
-  border-right: solid 6px transparent;
-  border-bottom: solid 10px #fff;
-  margin: 5px 6px 6px 6px;
-`
-
 export default class Layout extends Component {
-  header = React.createRef()
-
   static propTypes = {
     children: PropTypes.node,
     title: PropTypes.string,
   }
 
-  state = {
-    hasScrooled: false,
+  constructor (props) {
+    super(props)
+
+    this.headerRef = React.createRef()
+
+    this.state = {
+      hasScrooled: false,
+    }
   }
 
   componentDidMount () {
     window.addEventListener('scroll', this.handleScroll)
+    this.handleScroll()
   }
 
   componentWillUnmount () {
@@ -104,8 +69,13 @@ export default class Layout extends Component {
   }
 
   handleScrollToTop = () => {
-    // console.log(this.header)
-    // this.header.current.scrollTo(0, 0)
+    console.log(this.headerRef.current)
+    this.headerRef.current
+      .scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+        inline: 'start',
+      })
   }
 
   render () {
@@ -124,15 +94,12 @@ export default class Layout extends Component {
           </title>
         </Head>
 
-        <Header ref={this.header} />
-
+        <Header ref={this.headerRef} />
         <Main>
           {children}
         </Main>
         {hasScrooled &&
-          <ScrollToTopBtn onClick={this.handleScrollToTop}>
-            <Triangle />
-          </ScrollToTopBtn>
+          <ScrollToTopBtn onClick={this.handleScrollToTop} />
         }
         <Footer />
       </Root>
