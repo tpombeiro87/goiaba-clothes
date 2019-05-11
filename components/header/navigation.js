@@ -8,13 +8,13 @@ import { compactVersionMediaQuery } from '../utils/responsive-utils'
 import NavLink from './nav-link'
 import HamburguerMenuA from './hamburguer-menu'
 
-const ANIMATION_DURATION = 300
+const ANIMATION_DURATION = 250
 
 const TRANSITIONS_STYLES = {
-  entering: { transform: 'translate(0px, 0px)' },
+  entering: { transform: 'translate(730px, 0px)' },
   entered: { transform: 'translate(0px, 0px)' },
-  exiting: { transform: 'translate(645px, 0px)' },
-  exited: { transform: 'translate(645px, 0px)' },
+  exiting: { transform: 'translate(730px, 0px)' },
+  exited: { display: 'none' },
 }
 
 const Nav = styled.nav`
@@ -34,7 +34,6 @@ const LinksWrapper = styled.div`
     border-bottom: solid;
     border-width: 1px;
     border-color: #c6c6c6;
-
     transition: transform ${ANIMATION_DURATION}ms ease-out;
     ${props => TRANSITIONS_STYLES[props.elementState]};
     z-index: 1;

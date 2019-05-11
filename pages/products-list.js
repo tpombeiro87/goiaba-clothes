@@ -27,10 +27,11 @@ const Title = styled.h1`
 const ProductListWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-evenly;
 `
 
 const ProductWrapper = styled.a`
-  max-width: 320px;
+  max-width: 300px;
   padding-right: 20px;
   text-align: center;
   text-decoration-line: none;
@@ -38,8 +39,8 @@ const ProductWrapper = styled.a`
 `
 
 const ProductThumbnail = styled.img`
-  width: 327px;
-  height: 442px;
+  height: 400px;
+  width: 300px;
   background-repeat: no-repeat;
   background-size: 327px 442px;
   ${props => `
@@ -58,6 +59,8 @@ const ProductTitle = styled.h2`
   font-stretch: 100%;
   font-weight: 400;
   text-transform: uppercase;
+  padding-left: 6px;
+  padding-right: 6px;
 `
 
 const ProductPrice = styled.h3`
@@ -113,8 +116,8 @@ class ProductList extends Component {
                 <Link href={`/product?slug=${product.fields.slug}`} key={product.fields.slug} passHref prefetch>
                   <ProductWrapper>
                     <ProductThumbnail
-                      key={product.fields.slug}
                       hoverImage={hoverImage}
+                      key={product.fields.slug}
                       mainImage={mainImage} />
                     <ProductTitle>
                       {product.fields.highlight && <Fragment><img alt='Destacado' src='/static/icons/star.png' />&nbsp;</Fragment> }

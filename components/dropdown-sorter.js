@@ -5,6 +5,18 @@ import PropTypes from 'prop-types'
 const DropdownSorterWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+  margin-right: 25px;
+
+  span {
+    margin-right: 10px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  select {
+    font-size: 10px;
+  }
 `
 
 const sortingOptions = [{

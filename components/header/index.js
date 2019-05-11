@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import { compactVersionMediaQuery } from '../utils/responsive-utils'
+import { compactVersionMediaQuery, wideVersionMediaQuery } from '../utils/responsive-utils'
 
 import Logo from './logo'
 import Navigation from './navigation'
@@ -15,6 +15,7 @@ const HeaderWrapper = styled.header`
   @media ${compactVersionMediaQuery} {
     position: relative;
   }
+
   border-bottom: solid;
   border-width: 1px;
   border-color: #c6c6c6;
@@ -24,9 +25,11 @@ const HeaderWrapper = styled.header`
 const HeaderContent = styled.div`
   padding-left: 20px;
   padding-right: 20px;
-
   margin-right: auto;
   margin-left: auto;
+  @media ${wideVersionMediaQuery} {
+    width: 985px;
+  }
 
   display: flex;
   align-items: center;

@@ -28,6 +28,7 @@ const Root = styled.div`
 `
 
 const Main = styled.main`
+  min-width: 320px;
   min-height: calc(100vh - 270px);
   padding-left: 20px;
   padding-right: 20px;
@@ -35,7 +36,7 @@ const Main = styled.main`
   margin-left: auto;
   @media ${wideVersionMediaQuery} {
     margin-top: 85px;
-    width: 1045px;
+    width: 985px;
   }
 `
 
