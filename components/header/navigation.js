@@ -1,11 +1,21 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { Transition } from 'react-transition-group'
 
 import { compactVersionMediaQuery } from '../utils/responsive-utils'
 
 import NavLink from './nav-link'
 import HamburguerMenuA from './hamburguer-menu'
+
+const ANIMATION_DURATION = 300
+
+const TRANSITIONS_STYLES = {
+  entering: { transform: 'translate(0px, 0px)' },
+  entered: { transform: 'translate(0px, 0px)' },
+  exiting: { transform: 'translate(645px, 0px)' },
+  exited: { transform: 'translate(645px, 0px)' },
+}
 
 const Nav = styled.nav`
   margin-left: 40px;
@@ -14,20 +24,20 @@ const Nav = styled.nav`
 const LinksWrapper = styled.div`
   display: unset;
   @media ${compactVersionMediaQuery} {
-    ${props => !props.hamburguerMenuOpen
-    ? 'display: none'
-    : `transition: transform 0.3s ease-in-out, opacity 0.2s ease-in-out;
-       transform-origin: 1em 2.5em;
-       display: flex;
-       flex-direction: column;
-       position: absolute;
-       right: 0px;
-       top: 76px;
-       width: 100%;
-       background: white;
-       border-bottom: solid;
-       border-width: 1px;
-       border-color: #c6c6c6;`};
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 0px;
+    top: 76px;
+    width: 100%;
+    background: white;
+    border-bottom: solid;
+    border-width: 1px;
+    border-color: #c6c6c6;
+
+    transition: transform ${ANIMATION_DURATION}ms ease-out;
+    ${props => TRANSITIONS_STYLES[props.elementState]};
+    z-index: 1;
   }
 `
 
@@ -35,11 +45,15 @@ const Navigation = ({ hamburguerMenuOpen, onToggleHamburguerMenu }) => (
   <Nav>
     <HamburguerMenuA isAcitve={hamburguerMenuOpen} onClick={onToggleHamburguerMenu} />
 
-    <LinksWrapper hamburguerMenuOpen={hamburguerMenuOpen}>
-      <NavLink title='Produtos' url='/products-list' />
-      <NavLink title='Informações' url='/about' />
-      <NavLink title='Comprar' url='/contact' />
-    </LinksWrapper>
+    <Transition in={hamburguerMenuOpen} timeout={ANIMATION_DURATION}>
+      { elementState =>
+        <LinksWrapper elementState={elementState} hamburguerMenuOpen={hamburguerMenuOpen}>
+          <NavLink title='Produtos' url='/products-list' />
+          <NavLink title='Informações' url='/about' />
+          <NavLink title='Comprar' url='/contact' />
+        </LinksWrapper>
+      }
+    </Transition>
   </Nav>
 )
 

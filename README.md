@@ -21,16 +21,12 @@ Beatiffy pages
 misc
 -----
 
-* header getting smaller on scroll
-* btn scrool to top
+* btn scrool to top animation get in
 * Create a tutorial video of edition on contenful
-* Product list  laazy loading
+* Product list laazy loading
 
 RESPONSIVE
 ----------
-
-* Header (hamburguer menu)
-  - animation slide menu
 * Layouts
 
 

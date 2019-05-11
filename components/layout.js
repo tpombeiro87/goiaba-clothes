@@ -34,7 +34,7 @@ const Main = styled.main`
   margin-right: auto;
   margin-left: auto;
   @media ${wideVersionMediaQuery} {
-    margin-top: 55px;
+    margin-top: 85px;
     width: 1045px;
   }
 `
@@ -98,9 +98,7 @@ export default class Layout extends Component {
         <Main>
           {children}
         </Main>
-        {hasScrooled &&
-          <ScrollToTopBtn onClick={this.handleScrollToTop} />
-        }
+        <ScrollToTopBtn onClick={this.handleScrollToTop} show={hasScrooled} />
         <Footer />
       </Root>
     )
