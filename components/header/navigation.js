@@ -17,6 +17,7 @@ const LinksWrapper = styled.div`
     ${props => !props.hamburguerMenuOpen
     ? 'display: none'
     : `transition: transform 0.3s ease-in-out, opacity 0.2s ease-in-out;
+       transform-origin: 1em 2.5em;
        display: flex;
        flex-direction: column;
        position: absolute;

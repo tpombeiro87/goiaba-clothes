@@ -9,16 +9,13 @@ const HamburguerWrapper = styled.button`
   @media ${compactVersionMediaQuery} {
     display: inline-block;
   }
+  background: white;
   border: none;
-  border-radius: 0;
   color: black;
   cursor: pointer;
-  padding: 1em 1.5em;
-  text-transform: uppercase;
   transition: all 0.25s ease-in-out;
-
+  padding: 15px 0 15px 15px;
   font-size: 0.875em;
-  padding: 1em;
   :focus {
     outline: none;
     outline-offset: -2px;
@@ -27,7 +24,6 @@ const HamburguerWrapper = styled.button`
 
 const Svg = styled.svg`
   display: inline-block;
-  fill: currentColor;
   height: 1em;
   width: 1em;
   vertical-align: middle;

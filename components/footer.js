@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import { compactVersionMediaQuery, wideVersionMediaQuery } from '../components/utils/responsive-utils'
+
 import Link from './link'
 
 const FooterContainer = styled.footer`
@@ -15,11 +17,19 @@ const Section = styled.section`
   padding-top: 30px;
   margin-top: 40px;
   border-top: 1px solid #c6c6c6;
+
+  @media ${compactVersionMediaQuery} {
+    flex-direction: column;
+    text-align: center;
+  }
 `
 
 const Col = styled.div`
   display: flex;
   flex-direction: column;
+  @media ${compactVersionMediaQuery} {
+    margin-bottom: 30px;
+  }
   span {
     padding-bottom: 7px;
     font-size: 14px;
@@ -30,8 +40,10 @@ const Col = styled.div`
 `
 
 const Copyright = styled.section`
-  padding-top: 30px;
-  margin-top: 40px;
+  @media ${wideVersionMediaQuery} {
+    margin-top: 40px;
+  }
+  padding-top: 22px;
   border-top: 1px solid #c6c6c6;
   margin-bottom: 20px;
   text-align: center;

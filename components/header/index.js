@@ -34,10 +34,8 @@ const HeaderContent = styled.div`
 `
 
 class Header extends Component {
-  header = React.createRef()
   state = {
     hamburguerMenuOpen: false,
-    hasScrooled: false,
   }
 
   componentDidMount () {
@@ -54,17 +52,12 @@ class Header extends Component {
     }))
   }
 
-  handleScroll = () => {
-    this.setState({ hasScrooled: window.scrollY > 80 })
-    console.log(window.scrollY)
-  }
-
   render () {
-    const { hasScrooled, hamburguerMenuOpen } = this.state
+    const { hamburguerMenuOpen } = this.state
 
     return (
-      <HeaderWrapper ref={this.header}>
-        <HeaderContent hasScrooled={hasScrooled}>
+      <HeaderWrapper>
+        <HeaderContent>
           <Logo />
           <Navigation hamburguerMenuOpen={hamburguerMenuOpen} onToggleHamburguerMenu={this.handleToggleHamburguerMenu} />
         </HeaderContent>
