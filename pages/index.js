@@ -3,6 +3,8 @@ import styled from 'styled-components'
 
 import Layout from '../components/layout'
 
+import { wideVersionMediaQuery } from '../components/utils/responsive-utils'
+
 const HeroWrapper = styled.div`
   margin-top: 30px;
 `
@@ -15,11 +17,14 @@ const HeroTitle = styled.h1`
   line-height: 1;
 
   text-transform: uppercase;
-  position: absolute;
+  @media ${wideVersionMediaQuery} {
+    position: absolute;
+    top: 45%;
+    right: 5%;
+    transform: rotate(-90deg);
+  }
   text-align: center;
-  top: 45%;
-  right: 5%;
-  transform: rotate(-90deg);
+  margin: 15px;
 `
 
 const HeroImg = styled.img`
@@ -34,7 +39,9 @@ const HomeIndentity = styled.div`
 `
 const HomeIndentityTitle = styled.h3`
   margin-left: 20px;
-  width: 430px;
+  @media ${wideVersionMediaQuery} {
+    width: 430px;
+  }
   font-family: Arial, sans-serif;
   color: black;
   letter-spacing: 2px;
