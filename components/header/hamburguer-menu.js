@@ -18,7 +18,6 @@ const HamburguerWrapper = styled.button`
   font-size: 0.875em;
   :focus {
     outline: none;
-    outline-offset: -2px;
   }
 `
 

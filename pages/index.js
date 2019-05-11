@@ -1,12 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
+import NextLink from 'next/link'
 
 import Layout from '../components/layout'
-
 import { wideVersionMediaQuery } from '../components/utils/responsive-utils'
 
-const HeroWrapper = styled.div`
+const HeroWrapperLink = styled.div`
   margin-top: 30px;
+  cursor: pointer;
 `
 
 const HeroTitle = styled.h1`
@@ -19,8 +20,8 @@ const HeroTitle = styled.h1`
   text-transform: uppercase;
   @media ${wideVersionMediaQuery} {
     position: absolute;
-    top: 45%;
-    right: 5%;
+    top: 328px;
+    right: -45px;
     transform: rotate(-90deg);
   }
   text-align: center;
@@ -49,10 +50,12 @@ const HomeIndentityTitle = styled.h3`
 
 const Home = () => (
   <Layout title='Home'>
-    <HeroWrapper>
-      <HeroTitle>Novidades</HeroTitle>
-      <HeroImg src='/static/hero-wanted.jpg'/>
-    </HeroWrapper>
+    <NextLink href='/products-list' passHref prefetch>
+      <HeroWrapperLink>
+        <HeroTitle>Novidades</HeroTitle>
+        <HeroImg src='/static/hero-wanted.jpg'/>
+      </HeroWrapperLink>
+    </NextLink>
     <HomeIndentity>
       <img alt='logo' src='/static/logo/big.png' />
       <HomeIndentityTitle>A GOIABA é uma marca portuguesa criada em Dezembro 2018, dedicada à comercialização de roupa e acessórios femininos.</HomeIndentityTitle>
