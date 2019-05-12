@@ -7,10 +7,15 @@ import RegularPage from '../components/regular-page'
 import Slider from '../components/slider'
 import { productContentFetcher } from '../contentful-data/utils'
 import { CollapsibleContainer } from '../components/collapsible'
+import { compactVersionMediaQuery, AllMatchMedia } from '../components/utils/responsive-utils'
 
 const Wrapper = styled.div`
   margin-top: 30px;
   display: flex;
+
+  @media ${compactVersionMediaQuery} {
+    flex-direction: column;
+  }
 `
 
 const InfoWrapper = styled.div`
@@ -46,8 +51,11 @@ const ProductPrice = styled.h3`
   line-height: 20px;
   letter-spacing: 3px;
 `
-
-const Breadcrumb = styled.div`
+// This is not working because almatch media n bomba ao inticio ?
+const BreadcrumbWrap = styled.div`
+  ${props => props.isVisible
+    ? `display: block;`
+    : `display: none;`}
   white-space: nowrap;
   font-size: 11px;
   letter-spacing: 1px;
@@ -70,34 +78,45 @@ const Breadcrumb = styled.div`
   }
 `
 
-const ProductPage = ({ product = { fields: { photos: [], file: {} } } }) => (
-  <RegularPage>
-    <Wrapper>
-      <Slider images={product.fields.photos.map(photo => photo.fields.file.url)} />
-      <InfoWrapper>
-        <Breadcrumb>
-          <ul>
-            <li><Link href={`/products-list`} passHref prefetch>Inicio</Link> |&nbsp;</li>
-            <li>{product.fields.title}</li>
-          </ul>
-        </Breadcrumb>
-        <ProductTitle>{product.fields.title}</ProductTitle>
-        <ProductPrice>{(product.fields.price).toFixed(2)} €</ProductPrice>
+const Breadcrumb = ({ isVisible, product }) =>
+  <BreadcrumbWrap isVisible={isVisible}>
+    <ul>
+      <li><Link href={`/products-list`} passHref prefetch>Inicio</Link> |&nbsp;</li>
+      <li>{product.fields.title}</li>
+    </ul>
+  </BreadcrumbWrap>
 
-        <CollapsibleContainer label='Descrição'>
-          <ProductDescription>{product.fields.description || 'Sem descrição'}</ProductDescription>
-        </CollapsibleContainer>
-        <CollapsibleContainer label='Características'>
-          <ProductDescription>{product.fields.characteristics || 'Sem características'}</ProductDescription>
-        </CollapsibleContainer>
-        <CollapsibleContainer label='Partilhar'>
-          <p>facebook</p>
-        </CollapsibleContainer>
+const ProductPage = ({ product = { fields: { photos: [], file: {} } } }) => {
+  return (
+    <AllMatchMedia>
+      {
+        ({ isCompactVersionViewport, isWideVersionViewport }) =>
+          <RegularPage>
+            <Wrapper>
+              <Breadcrumb isVisible={isCompactVersionViewport} product={product} />
+              <Slider images={product.fields.photos.map(photo => photo.fields.file.url)} />
+              <InfoWrapper>
+                <Breadcrumb isVisible={isWideVersionViewport} product={product} />
+                <ProductTitle>{product.fields.title}</ProductTitle>
+                <ProductPrice>{(product.fields.price).toFixed(2)} €</ProductPrice>
 
-      </InfoWrapper>
-    </Wrapper>
-  </RegularPage>
-)
+                <CollapsibleContainer label='Descrição'>
+                  <ProductDescription>{product.fields.description || 'Sem descrição'}</ProductDescription>
+                </CollapsibleContainer>
+                <CollapsibleContainer label='Características'>
+                  <ProductDescription>{product.fields.characteristics || 'Sem características'}</ProductDescription>
+                </CollapsibleContainer>
+                <CollapsibleContainer label='Partilhar'>
+                  <p>facebook</p>
+                </CollapsibleContainer>
+
+              </InfoWrapper>
+            </Wrapper>
+          </RegularPage>
+      }
+    </AllMatchMedia>
+  )
+}
 
 ProductPage.getInitialProps = ({ query: { slug } }) => ({
   product: productContentFetcher(slug),
