@@ -28,7 +28,7 @@ const HeaderContent = styled.div`
   margin-right: auto;
   margin-left: auto;
   @media ${wideVersionMediaQuery} {
-    width: 985px;
+    max-width: 985px;
   }
 
   display: flex;

@@ -36,7 +36,7 @@ const Main = styled.main`
   margin-left: auto;
   @media ${wideVersionMediaQuery} {
     margin-top: 85px;
-    width: 985px;
+    max-width: 985px;
   }
 `
 
