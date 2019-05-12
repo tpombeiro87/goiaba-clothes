@@ -98,7 +98,12 @@ const ProductPage = ({ product = { fields: { photos: [], file: {} } } }) => {
               <InfoWrapper>
                 <Breadcrumb isVisible={isWideVersionViewport} product={product} />
                 <ProductTitle>{product.fields.title}</ProductTitle>
-                <ProductPrice>{(product.fields.price).toFixed(2)} €</ProductPrice>
+                <ProductPrice>
+                  {product.fields.price
+                    ? `${(product.fields.price).toFixed(2)} €`
+                    : `N.D.`
+                  }
+                </ProductPrice>
 
                 <CollapsibleContainer label='Descrição'>
                   <ProductDescription>{product.fields.description || 'Sem descrição'}</ProductDescription>
