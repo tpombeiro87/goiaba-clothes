@@ -21,7 +21,7 @@ const RegularPage = ({ pageId, children }) => {
 }
 
 RegularPage.propTypes = {
-  children: PropTypes.array,
+  children: PropTypes.node,
   pageId: PropTypes.string,
 }
 

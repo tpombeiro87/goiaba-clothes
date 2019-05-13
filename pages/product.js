@@ -61,6 +61,12 @@ const ProductPage = ({ router }) => {
   if (!product) {
     return <ErrorPage />
   }
+  const description = product.fields.description
+    ? product.fields.description // .replace(/(?:\r\n|\r|\n)/g, '<br>')
+    : 'Sem descrição'
+  const characteristics = product.fields.characteristics
+    ? product.fields.characteristics // .replace(/(?:\r\n|\r|\n)/g, '<br>')
+    : 'Sem características'
   return (
     <AllMatchMedia>
       {
@@ -80,10 +86,14 @@ const ProductPage = ({ router }) => {
                 </ProductPrice>
 
                 <CollapsibleContainer label='Descrição'>
-                  <ProductDescription>{product.fields.description || 'Sem descrição'}</ProductDescription>
+                  <ProductDescription>
+                    {description}
+                  </ProductDescription>
                 </CollapsibleContainer>
                 <CollapsibleContainer label='Características'>
-                  <ProductDescription>{product.fields.characteristics || 'Sem características'}</ProductDescription>
+                  <ProductDescription>
+                    {characteristics}
+                  </ProductDescription>
                 </CollapsibleContainer>
                 <CollapsibleContainer label='Partilhar'>
                   <Share />

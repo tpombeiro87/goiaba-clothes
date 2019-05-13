@@ -5,7 +5,7 @@ import NextLink from 'next/link'
 import Layout from '../components/layout'
 import { compactVersionMediaQuery, wideVersionMediaQuery } from '../components/utils/responsive-utils'
 
-const HeroWrapperLink = styled.div`
+const HeroWrapperLink = styled.a`
   position: relative;
   margin-top: 30px;
   cursor: pointer;

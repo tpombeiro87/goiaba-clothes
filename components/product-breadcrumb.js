@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import Link from 'next/link'
+import NextLink from 'next/link'
 
 import { compactVersionMediaQuery } from './utils/responsive-utils'
 
@@ -38,7 +38,7 @@ const BreadcrumbWrap = styled.div`
 const ProductBreadcrumb = ({ isVisible, product }) =>
   <BreadcrumbWrap isVisible={isVisible}>
     <ul>
-      <li><Link href={`/products-list`} passHref prefetch>Inicio</Link> |&nbsp;</li>
+      <li><NextLink href={`/products-list`} passHref prefetch><a>Inicio</a></NextLink> |&nbsp;</li>
       <li>{product.fields.title}</li>
     </ul>
   </BreadcrumbWrap>
