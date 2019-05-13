@@ -6,11 +6,6 @@ Product page
 
 * carosell images
 
-* slug on url
-* reload produtos n esta a bombar
-* improve sharing
-* add characteristics to model
-
 Beatiffy pages
 --------------
 
@@ -19,28 +14,32 @@ Beatiffy pages
   * add images
   * layout
 * create layouts for diferent pages
+* RESPONSIVE
+
+Buy
+---
+* form
+* basket
+* send / register email
 
 misc
 -----
-
+* fix bread not rendering local
+* create _error adn not found custom pages
 * Create a tutorial video of edition on contenful
-* Product list laazy loading
 
-RESPONSIVE
-----------
-* Layouts
-
-
-
-create _error adn not found custom pages
 
 SECONDARY
 ---------
 
-seo optimization
-stripe integration with contentfull
+* slug on url
+* improve sharing
+* seo optimization
 
+^ stripe integration with contentfull
+^ lighthouse top score
 
-* related articles
-* share
 * heighlight section on home page
+* heighlight on product
+* Product list laazy loading
+* desc e charac /n
