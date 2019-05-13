@@ -9,6 +9,7 @@ const HeroWrapperLink = styled.a`
   position: relative;
   margin-top: 30px;
   cursor: pointer;
+  text-decoration: none;
 `
 
 const HeroTitle = styled.h1`
