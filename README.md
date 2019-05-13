@@ -4,10 +4,12 @@ TODOS
 Product page
 ------------
 
-* preatify
 * carosell images
+
 * slug on url
 * reload produtos n esta a bombar
+* improve sharing
+* add characteristics to model
 
 Beatiffy pages
 --------------
@@ -21,7 +23,6 @@ Beatiffy pages
 misc
 -----
 
-* btn scrool to top animation get in
 * Create a tutorial video of edition on contenful
 * Product list laazy loading
 
@@ -29,6 +30,9 @@ RESPONSIVE
 ----------
 * Layouts
 
+
+
+create _error adn not found custom pages
 
 SECONDARY
 ---------

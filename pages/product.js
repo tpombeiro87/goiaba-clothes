@@ -1,13 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import Link from 'next/link'
+import { withRouter } from 'next/router'
+import ErrorPage from 'next/error'
 
 import RegularPage from '../components/regular-page'
 import Slider from '../components/slider'
 import { productContentFetcher } from '../contentful-data/utils'
 import { CollapsibleContainer } from '../components/collapsible'
 import { compactVersionMediaQuery, AllMatchMedia } from '../components/utils/responsive-utils'
+import ProductBreadcrumb from '../components/product-breadcrumb'
+import Share from '../components/share'
 
 const Wrapper = styled.div`
   margin-top: 30px;
@@ -51,52 +54,23 @@ const ProductPrice = styled.h3`
   line-height: 20px;
   letter-spacing: 3px;
 `
-// This is not working because almatch media n bomba ao inticio ?
-const BreadcrumbWrap = styled.div`
-  ${props => props.isVisible
-    ? `display: block;`
-    : `display: none;`}
-  white-space: nowrap;
-  font-size: 11px;
-  letter-spacing: 1px;
 
-  margin-left: 0;
-  line-height: 26px;
-  text-transform: uppercase;
-
-  ul {
-    margin-block-start: 0;
-    margin-block-end: 0;
-    padding-inline-start: 0;
-    list-style: none;
+const ProductPage = ({ router }) => {
+  const slug = router.query.slug
+  const product = productContentFetcher(slug)
+  if (!product) {
+    return <ErrorPage />
   }
-  li {
-    display: inline-block;
-  }
-  a {
-    color: #000;
-  }
-`
-
-const Breadcrumb = ({ isVisible, product }) =>
-  <BreadcrumbWrap isVisible={isVisible}>
-    <ul>
-      <li><Link href={`/products-list`} passHref prefetch>Inicio</Link> |&nbsp;</li>
-      <li>{product.fields.title}</li>
-    </ul>
-  </BreadcrumbWrap>
-
-const ProductPage = ({ product = { fields: { photos: [], file: {} } } }) => {
   return (
     <AllMatchMedia>
       {
         ({ isCompactVersionViewport, isWideVersionViewport }) =>
           <RegularPage>
             <Wrapper>
-              <Breadcrumb isVisible={isCompactVersionViewport} product={product} />
+              <ProductBreadcrumb isVisible={isCompactVersionViewport} product={product} />
               <Slider images={product.fields.photos.map(photo => photo.fields.file.url)} />
               <InfoWrapper>
-                <Breadcrumb isVisible={isWideVersionViewport} product={product} />
+                <ProductBreadcrumb isVisible={isWideVersionViewport} product={product} />
                 <ProductTitle>{product.fields.title}</ProductTitle>
                 <ProductPrice>
                   {product.fields.price
@@ -112,7 +86,7 @@ const ProductPage = ({ product = { fields: { photos: [], file: {} } } }) => {
                   <ProductDescription>{product.fields.characteristics || 'Sem características'}</ProductDescription>
                 </CollapsibleContainer>
                 <CollapsibleContainer label='Partilhar'>
-                  <p>facebook</p>
+                  <Share />
                 </CollapsibleContainer>
 
               </InfoWrapper>
@@ -123,12 +97,8 @@ const ProductPage = ({ product = { fields: { photos: [], file: {} } } }) => {
   )
 }
 
-ProductPage.getInitialProps = ({ query: { slug } }) => ({
-  product: productContentFetcher(slug),
-})
-
 ProductPage.propTypes = {
-  product: PropTypes.object,
+  router: PropTypes.object,
 }
 
-export default ProductPage
+export default withRouter(ProductPage)
