@@ -5,11 +5,10 @@ import NextLink from 'next/link'
 import Layout from '../components/layout'
 import { compactVersionMediaQuery, wideVersionMediaQuery } from '../components/utils/responsive-utils'
 
-const HeroWrapperLink = styled.a`
+const HeroWrapperLink = styled.div`
   position: relative;
   margin-top: 30px;
   cursor: pointer;
-  text-decoration: none;
 `
 
 const HeroTitle = styled.h1`
@@ -66,8 +65,10 @@ const Home = () => (
   <Layout title='Home'>
     <NextLink href='/products-list' passHref prefetch>
       <HeroWrapperLink>
-        <HeroTitle>Novidades</HeroTitle>
-        <HeroImg src='/static/hero-wanted.jpg'/>
+        <a>
+          <HeroTitle>Novidades</HeroTitle>
+          <HeroImg src='/static/hero-wanted.jpg'/>
+        </a>
       </HeroWrapperLink>
     </NextLink>
     <HomeIndentity>
