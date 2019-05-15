@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import PropTypes from 'prop-types'
 
+export const tinyVersionMediaQuery = `(max-width: 425px)`
 export const compactVersionMediaQuery = `(max-width: 750px)`
 export const wideVersionMediaQuery = `(min-width: 751px)`
 

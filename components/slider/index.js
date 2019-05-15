@@ -6,15 +6,21 @@ import ReactImageMagnify from 'react-image-magnify'
 import IconRoot from '../icons/icon-root'
 import LeftArrowSvg from '../icons/left-arrow-svg'
 import RightArrowSvg from '../icons/right-arrow-svg'
+import { tinyVersionMediaQuery } from '../utils/responsive-utils'
 
 const Wrapper = styled.div`
   width: 400px;
   display: flex;
   align-items: center;
+
+  @media ${tinyVersionMediaQuery} {
+    height: 100%;
+    width: 100%;
+  }
 `
 
 const WrapperImage = styled.div`
-  height: 442px;
+  height: 100%;
   width: 380px;
   background-color: #abaaaa8c;
 `
@@ -23,6 +29,7 @@ const Button = styled.button`
   border: none;
   background: none;
   width: 35px;
+  height: 100px;
   cursor: pointer;
 `
 

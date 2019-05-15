@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Head from 'next/head'
 import styled, { injectGlobal } from 'styled-components'
 
-import { wideVersionMediaQuery } from './utils/responsive-utils'
+import { tinyVersionMediaQuery, wideVersionMediaQuery } from './utils/responsive-utils'
 import Header from './header/index.js'
 import Footer from './footer'
 import ScrollToTopBtn from './scroll-to-top-btn'
@@ -37,6 +37,10 @@ const Main = styled.main`
   @media ${wideVersionMediaQuery} {
     margin-top: 85px;
     max-width: 985px;
+  }
+  @media ${tinyVersionMediaQuery} {
+    padding-left: 5px;
+    padding-right: 5px;
   }
 `
 
