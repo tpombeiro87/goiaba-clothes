@@ -7,7 +7,7 @@ import {
   compactVersionMediaQuery,
   wideVersionMediaQuery,
 } from '../components/utils/responsive-utils'
-import AnalyticsContainer from '../components/analytics/AnalyticsContainer'
+import AnalyticsContainer from '../components/analytics/analytics-container'
 
 const HeroWrapperLink = styled.div`
   position: relative;
