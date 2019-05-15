@@ -20,6 +20,7 @@ const BreadcrumbWrap = styled.div`
 
   @media ${compactVersionMediaQuery} {
     margin-bottom: 10px;
+    margin-left: 35px;
   }
   ul {
     margin-block-start: 0;

@@ -1,9 +1,6 @@
 TODOS
 =====
 
-* carosell images zoom
-* carrosell image slide effect
-
 Beatiffy pages
 --------------
 
@@ -26,6 +23,7 @@ misc
 * create _error adn not found custom pages
 * Create a tutorial video of edition on contenful
 * google tracking for the site
+* cookie section
 
 SECONDARY
 ---------
@@ -41,3 +39,4 @@ SECONDARY
 * heighlight on product
 * Product list laazy loading
 * desc e charac /n
+* carrosell image slide effect

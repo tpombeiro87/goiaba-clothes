@@ -77,7 +77,7 @@ const ProductPage = ({ router }) => {
           <RegularPage>
             <Wrapper>
               <ProductBreadcrumb isVisible={isCompactVersionViewport} product={product} />
-              <Slider images={product.fields.photos.map(photo => photo.fields.file.url)} />
+              <Slider images={product.fields.photos.map(photo => photo.fields.file.url)} isCompactVersionViewport={isCompactVersionViewport} />
               <InfoWrapper>
                 <ProductBreadcrumb isVisible={isWideVersionViewport} product={product} />
                 <ProductTitle>{product.fields.title}</ProductTitle>
