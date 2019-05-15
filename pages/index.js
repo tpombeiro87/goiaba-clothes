@@ -3,7 +3,11 @@ import styled from 'styled-components'
 import NextLink from 'next/link'
 
 import Layout from '../components/layout'
-import { compactVersionMediaQuery, wideVersionMediaQuery } from '../components/utils/responsive-utils'
+import {
+  compactVersionMediaQuery,
+  wideVersionMediaQuery,
+} from '../components/utils/responsive-utils'
+import AnalyticsContainer from '../components/analytics/AnalyticsContainer'
 
 const HeroWrapperLink = styled.div`
   position: relative;
@@ -62,20 +66,26 @@ const LogoBigImg = styled.img`
 `
 
 const Home = () => (
-  <Layout title='Home'>
-    <NextLink href='/products-list' passHref prefetch>
-      <HeroWrapperLink>
-        <a>
-          <HeroTitle>Novidades</HeroTitle>
-          <HeroImg src='/static/hero-wanted.jpg'/>
-        </a>
-      </HeroWrapperLink>
-    </NextLink>
-    <HomeIndentity>
-      <LogoBigImg alt='logo' src='/static/logo/big.png' />
-      <HomeIndentityTitle>A GOIABA é uma marca portuguesa criada em Dezembro 2018, dedicada à comercialização de roupa e acessórios femininos.</HomeIndentityTitle>
-    </HomeIndentity>
-  </Layout>
+  <>
+    <AnalyticsContainer />
+    <Layout title='Home'>
+      <NextLink href='/products-list' passHref prefetch>
+        <HeroWrapperLink>
+          <a>
+            <HeroTitle>Novidades</HeroTitle>
+            <HeroImg src='/static/hero-wanted.jpg' />
+          </a>
+        </HeroWrapperLink>
+      </NextLink>
+      <HomeIndentity>
+        <LogoBigImg alt='logo' src='/static/logo/big.png' />
+        <HomeIndentityTitle>
+          A GOIABA é uma marca portuguesa criada em Dezembro 2018, dedicada à
+          comercialização de roupa e acessórios femininos.
+        </HomeIndentityTitle>
+      </HomeIndentity>
+    </Layout>
+  </>
 )
 
 export default Home
