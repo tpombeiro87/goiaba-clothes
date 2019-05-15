@@ -70,7 +70,6 @@ export default class Layout extends Component {
   }
 
   handleScrollToTop = () => {
-    console.log(this.headerRef.current)
     this.headerRef.current
       .scrollIntoView({
         behavior: 'smooth',

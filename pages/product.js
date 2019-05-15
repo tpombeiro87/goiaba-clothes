@@ -22,7 +22,10 @@ const Wrapper = styled.div`
 `
 
 const InfoWrapper = styled.div`
-  margin-left: 40px;
+  margin-left: 60px;
+  @media ${compactVersionMediaQuery} {
+      margin-left: 40px;
+  }
   display: flex;
   flex-direction: column;
 `

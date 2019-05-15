@@ -1,10 +1,8 @@
 TODOS
 =====
 
-Product page
-------------
-
-* carosell images
+* carosell images zoom
+* carrosell image slide effect
 
 Beatiffy pages
 --------------
@@ -27,7 +25,7 @@ misc
 * fix bread not rendering local
 * create _error adn not found custom pages
 * Create a tutorial video of edition on contenful
-
+* google tracking for the site
 
 SECONDARY
 ---------

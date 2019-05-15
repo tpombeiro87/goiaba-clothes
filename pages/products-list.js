@@ -43,6 +43,7 @@ const ProductThumbnail = styled.img`
   width: 300px;
   background-repeat: no-repeat;
   background-size: 327px 442px;
+  background-color: #abaaaa8c;
   ${props => `
     content: url('${props.mainImage}');
     background-image: url('${props.mainImage}');

@@ -2,12 +2,31 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
+import IconRoot from '../icons/icon-root'
+import LeftArrowSvg from '../icons/left-arrow-svg'
+import RightArrowSvg from '../icons/right-arrow-svg'
+
 const Wrapper = styled.div`
   width: 400px;
+  display: flex;
+  align-items: center;
 `
 
+const WrapperImage = styled.div`
+  position: relative;
+  width: 380px;
+`
 const MainImage = styled.img`
-  width: 390px;
+  height: 507px;
+  width: 380px;
+  background-color: #abaaaa8c;
+`
+
+const Button = styled.button`
+  border: none;
+  background: none;
+  width: 35px;
+  cursor: pointer;
 `
 
 class Slider extends Component {
@@ -36,9 +55,11 @@ class Slider extends Component {
   render () {
     const { images } = this.props
     return <Wrapper>
-      <MainImage alt={this.state.current} src={images[this.state.current]} />
-      <button onClick={this.handlePreviousSlide}>&#60;</button>
-      <button onClick={this.handleNextSlide}>&#62;</button>
+      <Button onClick={this.handlePreviousSlide}><IconRoot svg={<LeftArrowSvg />} /></Button>
+      <WrapperImage>
+        <MainImage alt={this.state.current} src={images[this.state.current]} />
+      </WrapperImage>
+      <Button onClick={this.handleNextSlide}><IconRoot svg={<RightArrowSvg />} /></Button>
     </Wrapper>
   }
 }
