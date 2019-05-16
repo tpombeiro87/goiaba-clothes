@@ -47,7 +47,7 @@ const Navigation = ({ hamburguerMenuOpen, onToggleHamburguerMenu }) => (
     <Transition in={hamburguerMenuOpen} timeout={ANIMATION_DURATION}>
       { elementState =>
         <LinksWrapper elementState={elementState} hamburguerMenuOpen={hamburguerMenuOpen}>
-          <NavLink title='Produtos' url='/products-list' />
+          <NavLink title='Colecção' url='/products-list' />
           <NavLink title='Informações' url='/about' />
           <NavLink title='Comprar' url='/contact' />
         </LinksWrapper>
