@@ -9,7 +9,7 @@ import Slider from '../components/slider'
 import { productContentFetcher } from '../contentful-data/utils'
 import { CollapsibleContainer } from '../components/collapsible'
 import { compactVersionMediaQuery, AllMatchMedia } from '../components/utils/responsive-utils'
-import ProductBreadcrumb from '../components/product-breadcrumb'
+import Breadcrumb from '../components/breadcrumb'
 import Share from '../components/share'
 
 const Wrapper = styled.div`
@@ -19,6 +19,11 @@ const Wrapper = styled.div`
   @media ${compactVersionMediaQuery} {
     flex-direction: column;
   }
+`
+
+const Spacer = styled.div`
+  margin-bottom: 10px;
+  margin-left: 35px;
 `
 
 const InfoWrapper = styled.div`
@@ -76,10 +81,12 @@ const ProductPage = ({ router }) => {
         ({ isCompactVersionViewport, isWideVersionViewport }) =>
           <RegularPage>
             <Wrapper>
-              <ProductBreadcrumb isVisible={isCompactVersionViewport} product={product} />
+              <Spacer>
+                <Breadcrumb currentTitle={product.fields.title} fatherLink='/products-list' fatherTitle='Inicío' isVisible={isCompactVersionViewport} />
+              </Spacer>
               <Slider images={product.fields.photos.map(photo => photo.fields.file.url)} isCompactVersionViewport={isCompactVersionViewport} />
               <InfoWrapper>
-                <ProductBreadcrumb isVisible={isWideVersionViewport} product={product} />
+                <Breadcrumb currentTitle={product.fields.title} fatherLink='/products-list' fatherTitle='Inicío' isVisible={isWideVersionViewport} />
                 <ProductTitle>{product.fields.title}</ProductTitle>
                 <ProductPrice>
                   {product.fields.price
