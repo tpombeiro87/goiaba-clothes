@@ -19,8 +19,7 @@ const BreadcrumbWrap = styled.div`
   text-transform: uppercase;
 
   @media ${compactVersionMediaQuery} {
-    margin-bottom: 10px;
-    margin-left: 35px;
+
   }
   ul {
     margin-block-start: 0;
@@ -36,17 +35,19 @@ const BreadcrumbWrap = styled.div`
   }
 `
 
-const ProductBreadcrumb = ({ isVisible, product }) =>
+const Breadcrumb = ({ isVisible = true, fatherLink, fatherTitle, currentTitle }) =>
   <BreadcrumbWrap isVisible={isVisible}>
     <ul>
-      <li><NextLink href={`/products-list`} passHref prefetch><a>Inicio</a></NextLink> |&nbsp;</li>
-      <li>{product.fields.title}</li>
+      <li><NextLink href={fatherLink} passHref prefetch><a>{fatherTitle}</a></NextLink> |&nbsp;</li>
+      <li>{currentTitle}</li>
     </ul>
   </BreadcrumbWrap>
 
-ProductBreadcrumb.propTypes = {
+Breadcrumb.propTypes = {
   isVisible: PropTypes.bool,
-  product: PropTypes.object,
+  fatherLink: PropTypes.string,
+  fatherTitle: PropTypes.string,
+  currentTitle: PropTypes.string,
 }
 
-export default ProductBreadcrumb
+export default Breadcrumb
