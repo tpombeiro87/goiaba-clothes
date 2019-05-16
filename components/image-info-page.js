@@ -4,54 +4,86 @@ import PropTypes from 'prop-types'
 
 import { pageContentFetcher } from '../contentful-data/utils'
 import Layout from '../components/layout'
+import Breadcrumb from '../components/breadcrumb'
+import { compactVersionMediaQuery, wideVersionMediaQuery } from '../components/utils/responsive-utils'
+
+const Spacer = styled.div`
+  margin-top: 2em;
+`
 
 const Wrapper = styled.div`
-  margin-top: 30px;
   display: flex;
+  position: relative;
+  @media ${compactVersionMediaQuery} {
+    flex-direction: column;
+  }
+
+  @media ${wideVersionMediaQuery} {
+    margin-top: 30px;
+  }
 `
 const InfoWrap = styled.div`
-  width 50%;
+  @media ${wideVersionMediaQuery} {
+    width 50%;
+  }
 `
 
-const Title = styled.h1`
+const Title = styled.h2`
   font-family: Arial, sans-serif;
   color: black;
   line-height: 1;
-  font-size: 55px;
   font-weight: normal;
-  margin-top: 70px;
-  margin-bottom: 83px;
-  margin-left: -33%;
-  letter-spacing: 15px;
   text-transform: uppercase;
+
+  @media ${compactVersionMediaQuery} {
+    font-size: 1.5em;
+  }
+  @media ${wideVersionMediaQuery} {
+    letter-spacing: 15px;
+    position: absolute;
+    right: 15px;
+    font-size: 55px;
+  }
 `
 const Info = styled.div`
-    text-indent: 0;
-    padding: 0;
-    color: #000;
-    margin-bottom: 0;
-    padding-left: 80px;
-    font-size: 13 px;
-    color: #000000;
-    letter-spacing: 2px;
-    line-height: 23px;
-    text-align: justify;
-    padding: 0 20px;
+  @media ${wideVersionMediaQuery} {
+    margin-top: 177px;
+    margin-left: 20px;
+  }
+  letter-spacing: 2px;
+  line-height: 22px;
+  font-size: 13px;
+  h2 {
+    margin-block-start: 2em;
+    margin-block-end: 1em;
+    text-transform: uppercase;
+  }
 `
 
 const Img = styled.img`
-  width: 525px;
-  height: auto;
+  background-color: #acc46e;
+  @media ${wideVersionMediaQuery} {
+    width 50%;
+    min-width: 483px;
+    max-height: 631px;
+  }
+  max-width:100%;
+  max-height:100%;
 `
 
-const RegularPage = ({ pageId, ImgSrc }) => {
+const ImageInfoPage = ({ pageId }) => {
   const pageData = pageContentFetcher(pageId)
+  const ImgSrc = pageData.fields.heroImage
+    ? pageData.fields.heroImage.fields.file.url
+    : ''
   return (
     <Layout title={pageData.fields.title}>
+      <Spacer />
+      <Breadcrumb currentTitle={pageData.fields.title} fatherLink='/' fatherTitle='Home' />
       <Wrapper>
+        <Title>{pageData.fields.title}</Title>
         <Img src={ImgSrc} />
         <InfoWrap>
-          <Title>{pageData.fields.title}</Title>
           <Info dangerouslySetInnerHTML={{ __html: pageData.fields.body }} />
         </InfoWrap>
       </Wrapper>
@@ -59,9 +91,9 @@ const RegularPage = ({ pageId, ImgSrc }) => {
   )
 }
 
-RegularPage.propTypes = {
+ImageInfoPage.propTypes = {
   ImgSrc: PropTypes.string,
   pageId: PropTypes.string,
 }
 
-export default RegularPage
+export default ImageInfoPage
