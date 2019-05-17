@@ -2,10 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
-import { pageContentFetcher } from '../contentful-data/utils'
+import { pageContentFetcher } from '../../contentful-data/utils'
 import Layout from '../components/layout'
-import Breadcrumb from '../components/breadcrumb'
-import { compactVersionMediaQuery, wideVersionMediaQuery } from '../components/utils/responsive-utils'
+import Breadcrumb from '../breadcrumb'
+import { compactVersionMediaQuery, wideVersionMediaQuery } from '../utils/responsive-utils'
 
 const Spacer = styled.div`
   margin-top: 2em;

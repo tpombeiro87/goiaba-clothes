@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 import Head from 'next/head'
 import styled, { injectGlobal } from 'styled-components'
 
-import { tinyVersionMediaQuery, wideVersionMediaQuery } from './utils/responsive-utils'
-import Header from './header/index.js'
-import Footer from './footer'
-import ScrollToTopBtn from './scroll-to-top-btn'
+import { tinyVersionMediaQuery, wideVersionMediaQuery } from '../utils/responsive-utils'
+import Header from '../header/index.js'
+import Footer from '../footer'
+import ScrollToTopBtn from '../scroll-to-top-btn'
 
 injectGlobal`
   html, body, #root {

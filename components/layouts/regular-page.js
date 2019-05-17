@@ -2,9 +2,9 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import { pageContentFetcher } from '../contentful-data/utils'
-import Layout from '../components/layout'
-import Breadcrumb from '../components/breadcrumb'
+import { pageContentFetcher } from '../../contentful-data/utils'
+import Layout from './layout'
+import Breadcrumb from '../breadcrumb'
 
 const Spacer = styled.div`
   margin-top: 2em;

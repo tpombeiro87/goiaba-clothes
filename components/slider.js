@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import ReactImageMagnify from 'react-image-magnify'
 
-import IconRoot from '../icons/icon-root'
-import LeftArrowSvg from '../icons/left-arrow-svg'
-import RightArrowSvg from '../icons/right-arrow-svg'
-import { tinyVersionMediaQuery } from '../utils/responsive-utils'
+import IconRoot from './icons/icon-root'
+import LeftArrowSvg from './icons/left-arrow-svg'
+import RightArrowSvg from './icons/right-arrow-svg'
+import { tinyVersionMediaQuery } from './utils/responsive-utils'
 
 const Wrapper = styled.div`
   width: 400px;

@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { withRouter } from 'next/router'
 import ErrorPage from 'next/error'
 
-import RegularPage from '../components/regular-page'
+import RegularPage from '../components/layouts/regular-page'
 import Slider from '../components/slider'
 import { productContentFetcher } from '../contentful-data/utils'
 import { CollapsibleContainer } from '../components/collapsible'
