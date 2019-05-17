@@ -1,42 +1,43 @@
 TODOS
 =====
 
-Beatiffy pages
---------------
-
-* change model
-  * add sections
-  * add images
-  * layout
-* create layouts for diferent pages
-* RESPONSIVE
-
 Buy
 ---
+
 * form
 * basket
 * send / register email
 
 misc
 -----
-* fix bread not rendering local
+
 * create _error adn not found custom pages
 * Create a tutorial video of edition on contenful
 * google tracking for the site
 * cookie section
+* social media roadape
+* slug on url
+* reload produto gera erro
+* link todas as paginas n esta a funcionar
+
 
 SECONDARY
 ---------
 
-* slug on url
 * improve sharing
 * seo optimization
 
 ^ stripe integration with contentfull
 ^ lighthouse top score
+^ client side app get pages withour reloading
 
 * heighlight section on home page
 * heighlight on product
-* Product list laazy loading
+
 * desc e charac /n
 * carrosell image slide effect
+* fix bread not rendering local
+* Product list laazy loading
+
+* header basket (num artigo?)
+
