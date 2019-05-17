@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import Head from 'next/head'
 
 const setGTM = () => ({
@@ -12,10 +12,10 @@ const setGTM = () => ({
 const TagManagerContainer = () => (
   <noscript>
     <iframe
-      src='https://www.googletagmanager.com/ns.html?id=GTM-5KPH82B'
       height='0'
-      width='0'
+      src='https://www.googletagmanager.com/ns.html?id=GTM-5KPH82B'
       style={{ display: 'none', visibility: 'hidden' }}
+      width='0'
     />
   </noscript>
 )
@@ -36,13 +36,13 @@ class AxeptioContainer extends React.Component {
 }
 
 const AnalyticsContainer = () => (
-  <>
+  <Fragment>
     <Head>
       <script dangerouslySetInnerHTML={setGTM()} />
     </Head>
     <TagManagerContainer />
     <AxeptioContainer />
-  </>
+  </Fragment>
 )
 
 export default AnalyticsContainer
