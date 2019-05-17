@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { Transition } from 'react-transition-group'
 
 import { compactVersionMediaQuery } from '../utils/responsive-utils'
+import BagSvg from '../icons/bag-svg'
 
 import NavLink from './nav-link'
 import HamburguerMenuA from './hamburguer-menu'
@@ -22,10 +23,12 @@ const Nav = styled.nav`
 `
 
 const LinksWrapper = styled.div`
-  display: unset;
+  display: inline-flex;
+  align-items: center;
   @media ${compactVersionMediaQuery} {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     position: absolute;
     right: 0px;
     top: 76px;
@@ -49,7 +52,7 @@ const Navigation = ({ hamburguerMenuOpen, onToggleHamburguerMenu }) => (
         <LinksWrapper elementState={elementState} hamburguerMenuOpen={hamburguerMenuOpen}>
           <NavLink title='Colecção' url='/products-list' />
           <NavLink title='Informações' url='/about' />
-          <NavLink title='Comprar' url='/contact' />
+          <NavLink icon={<BagSvg />} title='Comprar' url='/contact' onClick={onToggleHamburguerMenu} />
         </LinksWrapper>
       }
     </Transition>

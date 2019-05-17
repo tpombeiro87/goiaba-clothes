@@ -5,7 +5,8 @@ import styled from 'styled-components'
 const IconRootWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: ${props => props.align === 'start'
+    ? 'flex-start;' : 'center;'}
 
   svg {
     width: 20px;
@@ -14,12 +15,13 @@ const IconRootWrapper = styled.div`
   }
 `
 
-const IconRoot = ({ svg }) =>
-  <IconRootWrapper>
+const IconRoot = ({ align, svg }) =>
+  <IconRootWrapper align={align}>
     {svg}
   </IconRootWrapper>
 
 IconRoot.propTypes = {
+  align: PropTypes.string,
   svg: PropTypes.node,
 }
 
