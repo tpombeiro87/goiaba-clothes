@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import Link from 'next/link'
 import styled from 'styled-components'
 
-import RegularPage from '../components/regular-page'
+import RegularPage from '../components/layouts/regular-page'
 import { sortingOptions, DropdownSorter } from '../components/dropdown-sorter'
 import { products } from '../contentful-data/utils'
 

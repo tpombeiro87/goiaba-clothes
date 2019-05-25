@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import { pageContentFetcher } from '../../contentful-data/utils'
-import Layout from './layout'
+import BaseLayout from './base'
 import Breadcrumb from '../breadcrumb'
 
 const Spacer = styled.div`
@@ -34,7 +34,7 @@ const Text = styled.div`
 const RegularPage = ({ pageId, children }) => {
   const pageData = pageId ? pageContentFetcher(pageId) : { fields: {} }
   return (
-    <Layout title={pageData.fields.title}>
+    <BaseLayout title={pageData.fields.title}>
       { children ||
         <Fragment>
           <Spacer />
@@ -45,7 +45,7 @@ const RegularPage = ({ pageId, children }) => {
           />
         </Fragment>
       }
-    </Layout>
+    </BaseLayout>
   )
 }
 

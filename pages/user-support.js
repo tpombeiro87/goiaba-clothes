@@ -1,6 +1,6 @@
 import React from 'react'
 
-import RegularPage from '../components/regular-page'
+import RegularPage from '../components/layouts/regular-page'
 
 const UserSupport = () => (
   <RegularPage pageId='user-support' />

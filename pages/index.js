@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import styled from 'styled-components'
 import NextLink from 'next/link'
 
-import Layout from '../components/layout'
+import BaseLayout from '../components/layouts/base'
 import {
   compactVersionMediaQuery,
   wideVersionMediaQuery,
@@ -76,7 +76,7 @@ const Home = () => {
   return (
     <Fragment>
       <AnalyticsContainer />
-      <Layout title='Home'>
+      <BaseLayout title='Home'>
         <NextLink href='/products-list' passHref prefetch>
           <HeroWrapperLink>
             <a>
@@ -89,7 +89,7 @@ const Home = () => {
           <LogoBigImg alt='logo' src='/static/logo/big.png' />
           <HomeIndentityTitle dangerouslySetInnerHTML={{ __html: pageData.fields.body }} />
         </HomeIndentity>
-      </Layout>
+      </BaseLayout>
     </Fragment>
   )
 }

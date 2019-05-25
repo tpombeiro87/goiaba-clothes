@@ -3,9 +3,10 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
 import { pageContentFetcher } from '../../contentful-data/utils'
-import Layout from '../components/layout'
 import Breadcrumb from '../breadcrumb'
 import { compactVersionMediaQuery, wideVersionMediaQuery } from '../utils/responsive-utils'
+
+import BaseLayout from './base'
 
 const Spacer = styled.div`
   margin-top: 2em;
@@ -77,7 +78,7 @@ const ImageInfoPage = ({ pageId }) => {
     ? pageData.fields.heroImage.fields.file.url
     : ''
   return (
-    <Layout title={pageData.fields.title}>
+    <BaseLayout title={pageData.fields.title}>
       <Spacer />
       <Breadcrumb currentTitle={pageData.fields.title} fatherLink='/' fatherTitle='Home' />
       <Wrapper>
@@ -87,7 +88,7 @@ const ImageInfoPage = ({ pageId }) => {
           <Info dangerouslySetInnerHTML={{ __html: pageData.fields.body }} />
         </InfoWrap>
       </Wrapper>
-    </Layout>
+    </BaseLayout>
   )
 }
 
