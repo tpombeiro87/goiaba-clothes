@@ -13,9 +13,7 @@ const InnerLink = styled.a`
   align-items: center;
   margin-right: 10px;
   width: 100%;
-  ${props => !props.active
-    ? `text-decoration-line: none;`
-    : `text-decoration-line: underline;`}
+  text-decoration-line: none;
 
   @media ${wideVersionMediaQuery} {
     margin-left: 20px;

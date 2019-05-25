@@ -6,9 +6,7 @@ import styled from 'styled-components'
 
 const InnerLink = styled.a`
   font-family: Arial, sans-serif;
-  ${props => !props.active
-    ? `text-decoration-line: none;`
-    : `text-decoration-line: underline`}
+  text-decoration-line: underline;
 
   ${props => props.secondary
     ? `

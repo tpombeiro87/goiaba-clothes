@@ -39,8 +39,8 @@ const Main = styled.main`
     max-width: 985px;
   }
   @media ${tinyVersionMediaQuery} {
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 `
 
