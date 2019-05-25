@@ -11,6 +11,7 @@ import { CollapsibleContainer } from '../components/collapsible'
 import { compactVersionMediaQuery, AllMatchMedia } from '../components/utils/responsive-utils'
 import Breadcrumb from '../components/breadcrumb'
 import Share from '../components/share'
+import CustomButton from '../components/custom-button'
 
 const Wrapper = styled.div`
   margin-top: 30px;
@@ -94,7 +95,7 @@ const ProductPage = ({ router }) => {
                     : `N.D.`
                   }
                 </ProductPrice>
-
+                <CustomButton>Adicionar ao Carrinho</CustomButton>
                 <CollapsibleContainer label='Descrição'>
                   <ProductDescription>
                     {description}
