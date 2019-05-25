@@ -3,21 +3,13 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import { pageContentFetcher } from '../../contentful-data/utils'
-import BaseLayout from './base'
 import Breadcrumb from '../breadcrumb'
+import Title from '../title'
+
+import BaseLayout from './base'
 
 const Spacer = styled.div`
   margin-top: 2em;
-`
-
-const Title = styled.h1`
-  letter-spacing: 2px;
-  line-height: 22px;
-  font-size: 13px;
-  text-transform: uppercase;
-  font-size: 19.5px;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
 `
 
 const Text = styled.div`

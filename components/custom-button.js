@@ -22,8 +22,8 @@ const ButtonElement = styled.button`
     }
 `
 
-const Button = ({ children, onClick }) => (
-  <ButtonElement onClick={onClick}>
+const Button = ({ children, onClick, ...rest }) => (
+  <ButtonElement onClick={onClick} {...rest}>
     {children}
   </ButtonElement>
 )

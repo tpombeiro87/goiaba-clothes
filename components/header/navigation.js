@@ -52,7 +52,7 @@ const Navigation = ({ hamburguerMenuOpen, onToggleHamburguerMenu }) => (
         <LinksWrapper elementState={elementState} hamburguerMenuOpen={hamburguerMenuOpen}>
           <NavLink title='Colecção' url='/products-list' />
           <NavLink title='Informações' url='/about' />
-          <NavLink icon={<BagSvg />} title='Comprar' url='/contact' onClick={onToggleHamburguerMenu} />
+          <NavLink icon={<BagSvg />} onClick={onToggleHamburguerMenu} title='Comprar' url='/cart' />
         </LinksWrapper>
       }
     </Transition>

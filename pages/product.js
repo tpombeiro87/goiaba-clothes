@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { withRouter } from 'next/router'
@@ -12,6 +12,7 @@ import { compactVersionMediaQuery, AllMatchMedia } from '../components/utils/res
 import Breadcrumb from '../components/breadcrumb'
 import Share from '../components/share'
 import CustomButton from '../components/custom-button'
+import { addCartItem } from '../components/utils/local-storage'
 
 const Wrapper = styled.div`
   margin-top: 30px;
@@ -64,58 +65,79 @@ const ProductPrice = styled.h3`
   letter-spacing: 3px;
 `
 
-const ProductPage = ({ router }) => {
-  const slug = router.query.slug
-  const product = productContentFetcher(slug)
-  if (!product) {
-    return <ErrorPage />
-  }
-  const description = product.fields.description
-    ? product.fields.description // .replace(/(?:\r\n|\r|\n)/g, '<br>')
-    : 'Sem descrição'
-  const characteristics = product.fields.characteristics
-    ? product.fields.characteristics // .replace(/(?:\r\n|\r|\n)/g, '<br>')
-    : 'Sem características'
-  return (
-    <AllMatchMedia>
-      {
-        ({ isCompactVersionViewport, isWideVersionViewport }) =>
-          <RegularPage>
-            <Wrapper>
-              <Spacer>
-                <Breadcrumb currentTitle={product.fields.title} fatherLink='/products-list' fatherTitle='Inicío' isVisible={isCompactVersionViewport} />
-              </Spacer>
-              <Slider images={product.fields.photos.map(photo => photo.fields.file.url)} isCompactVersionViewport={isCompactVersionViewport} />
-              <InfoWrapper>
-                <Breadcrumb currentTitle={product.fields.title} fatherLink='/products-list' fatherTitle='Inicío' isVisible={isWideVersionViewport} />
-                <ProductTitle>{product.fields.title}</ProductTitle>
-                <ProductPrice>
-                  {product.fields.price
-                    ? `${(product.fields.price).toFixed(2)} €`
-                    : `N.D.`
-                  }
-                </ProductPrice>
-                <CustomButton>Adicionar ao Carrinho</CustomButton>
-                <CollapsibleContainer label='Descrição'>
-                  <ProductDescription>
-                    {description}
-                  </ProductDescription>
-                </CollapsibleContainer>
-                <CollapsibleContainer label='Características'>
-                  <ProductDescription>
-                    {characteristics}
-                  </ProductDescription>
-                </CollapsibleContainer>
-                <CollapsibleContainer label='Partilhar'>
-                  <Share />
-                </CollapsibleContainer>
+const InfoMessage = styled.h3`
+  font-size: 14px;
+  color: #9E9E9E;
+`
 
-              </InfoWrapper>
-            </Wrapper>
-          </RegularPage>
-      }
-    </AllMatchMedia>
-  )
+class ProductPage extends Component {
+  state = {
+    showCartMsg: false,
+  }
+
+  handleAddToCart = () => {
+    const { router } = this.props
+    const slug = router.query.slug
+    addCartItem(slug)
+    this.setState({ showCartMsg: true })
+  }
+
+  render () {
+    const { showCartMsg } = this.state
+    const { router } = this.props
+    const slug = router.query.slug
+    const product = productContentFetcher(slug)
+    if (!product) {
+      return <ErrorPage />
+    }
+    const description = product.fields.description
+      ? product.fields.description // .replace(/(?:\r\n|\r|\n)/g, '<br>')
+      : 'Sem descrição'
+    const characteristics = product.fields.characteristics
+      ? product.fields.characteristics // .replace(/(?:\r\n|\r|\n)/g, '<br>')
+      : 'Sem características'
+    return (
+      <AllMatchMedia>
+        {
+          ({ isCompactVersionViewport, isWideVersionViewport }) =>
+            <RegularPage>
+              <Wrapper>
+                <Spacer>
+                  <Breadcrumb currentTitle={product.fields.title} fatherLink='/products-list' fatherTitle='Inicío' isVisible={isCompactVersionViewport} />
+                </Spacer>
+                <Slider images={product.fields.photos.map(photo => photo.fields.file.url)} isCompactVersionViewport={isCompactVersionViewport} />
+                <InfoWrapper>
+                  <Breadcrumb currentTitle={product.fields.title} fatherLink='/products-list' fatherTitle='Inicío' isVisible={isWideVersionViewport} />
+                  <ProductTitle>{product.fields.title}</ProductTitle>
+                  <ProductPrice>
+                    {product.fields.price
+                      ? `${(product.fields.price).toFixed(2)} €`
+                      : `N.D.`
+                    }
+                  </ProductPrice>
+                  <CustomButton onClick={this.handleAddToCart}>Adicionar ao Carrinho</CustomButton>
+                  { showCartMsg && <InfoMessage>O artigo foi adicionado ao seu carrinho.</InfoMessage> }
+                  <CollapsibleContainer label='Descrição'>
+                    <ProductDescription>
+                      {description}
+                    </ProductDescription>
+                  </CollapsibleContainer>
+                  <CollapsibleContainer label='Características'>
+                    <ProductDescription>
+                      {characteristics}
+                    </ProductDescription>
+                  </CollapsibleContainer>
+                  <CollapsibleContainer label='Partilhar'>
+                    <Share />
+                  </CollapsibleContainer>
+
+                </InfoWrapper>
+              </Wrapper>
+            </RegularPage>
+        }
+      </AllMatchMedia>
+    )
+  }
 }
 
 ProductPage.propTypes = {
