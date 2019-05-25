@@ -15,14 +15,15 @@ const IconRootWrapper = styled.div`
   }
 `
 
-const IconRoot = ({ align, svg }) =>
-  <IconRootWrapper align={align}>
+const IconRoot = ({ onClick, align, svg }) =>
+  <IconRootWrapper align={align} onClick={onClick}>
     {svg}
   </IconRootWrapper>
 
 IconRoot.propTypes = {
   align: PropTypes.string,
   svg: PropTypes.node,
+  onClick: PropTypes.func,
 }
 
 export default IconRoot

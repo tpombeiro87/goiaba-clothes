@@ -7,7 +7,10 @@ import Breadcrumb from '../components/breadcrumb'
 import Title from '../components/title'
 import CustomInput from '../components/custom-input'
 import CustomButton from '../components/custom-button'
-import { getCartItems } from '../components/utils/local-storage'
+import { getCartItems, removeCartItem, addCartItem } from '../components/utils/local-storage'
+import IconRoot from '../components/icons/icon-root'
+import PlusSvg from '../components/icons/plus-svg'
+import MinusSvg from '../components/icons/minus-svg'
 
 const Spacer = styled.div`
   margin-bottom: 40px;
@@ -19,6 +22,11 @@ const Root = styled.div`
 `
 
 const Section = styled.div`
+`
+
+const ProductWrap = styled.div`
+  display: flex;
+  justify-content: space-between;
 `
 
 const PAGE_STATUS_FORM = 'PAGE_STATUS_FORM'
@@ -102,10 +110,10 @@ class Cart extends Component {
     this.state = state
   }
 
-  handleInputChange = (fieldId, newValue) => {
-    let newState = {}
-    newState[fieldId] = newValue
-    this.setState({ ...newState })
+  componentDidMount () {
+    this.setState({
+      cart: getCartItems(),
+    })
   }
 
   _generateEmailBody = () => {
@@ -147,10 +155,24 @@ class Cart extends Component {
       })
   }
 
-  componentDidMount () {
+  handleRemoveCartItem = (slug) => {
+    removeCartItem(slug)
     this.setState({
       cart: getCartItems(),
     })
+  }
+
+  handleAddCartItem = (slug) => {
+    addCartItem(slug)
+    this.setState({
+      cart: getCartItems(),
+    })
+  }
+
+  handleInputChange = (fieldId, newValue) => {
+    let newState = {}
+    newState[fieldId] = newValue
+    this.setState({ ...newState })
   }
 
   render () {
@@ -177,15 +199,19 @@ class Cart extends Component {
                   <Fragment>
                     <Section>
                       <Title title='Resumo do Pedido' />
-                      <ul>
+                      <div>
                         {
                           !cart
                             ? <p>no items on the cart</p>
                             : Object.keys(cart).map(productSlug =>
-                              <li key={productSlug}>{`${productSlug} - quantidade ${cart[productSlug].quantity}`}</li>
+                              <ProductWrap key={productSlug}>
+                                {`${productSlug} - quantidade: ${cart[productSlug].quantity}`}
+                                <IconRoot onClick={() => this.handleRemoveCartItem(productSlug)} svg={<MinusSvg />} />
+                                <IconRoot onClick={() => this.handleAddCartItem(productSlug)} svg={<PlusSvg />} />
+                              </ProductWrap>
                             )
                         }
-                      </ul>
+                      </div>
                     </Section>
                     <Section>
                       <Title title='Detalhes de Faturação' />
