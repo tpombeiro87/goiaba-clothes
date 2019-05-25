@@ -7,10 +7,10 @@ import Breadcrumb from '../components/breadcrumb'
 import Title from '../components/title'
 import CustomInput from '../components/custom-input'
 import CustomButton from '../components/custom-button'
+import CartSummary from '../components/cart-summary'
 import { getCartItems, removeCartItem, addCartItem } from '../components/utils/local-storage'
-import IconRoot from '../components/icons/icon-root'
-import PlusSvg from '../components/icons/plus-svg'
-import MinusSvg from '../components/icons/minus-svg'
+import { productContentFetcher } from '../contentful-data/utils'
+import { compactVersionMediaQuery, AllMatchMedia } from '../components/utils/responsive-utils'
 
 const Spacer = styled.div`
   margin-bottom: 40px;
@@ -18,16 +18,15 @@ const Spacer = styled.div`
 `
 
 const Root = styled.div`
+  margin-top: 2em;
   display: flex;
 `
 
 const Section = styled.div`
+  margin-top: 30px;
+  margin-bottom: 30px;
 `
 
-const ProductWrap = styled.div`
-  display: flex;
-  justify-content: space-between;
-`
 
 const PAGE_STATUS_FORM = 'PAGE_STATUS_FORM'
 const PAGE_STATUS_SENDING = 'PAGE_STATUS_SENDING'
@@ -111,9 +110,18 @@ class Cart extends Component {
   }
 
   componentDidMount () {
-    this.setState({
-      cart: getCartItems(),
+    this.getCartItems()
+  }
+
+  getCartItems = () => {
+    let cart = getCartItems()
+    Object.keys(cart).map(cartItemSlug => {
+      cart[cartItemSlug] = {
+        ...cart[cartItemSlug],
+        ...productContentFetcher(cartItemSlug),
+      }
     })
+    this.setState({ cart })
   }
 
   _generateEmailBody = () => {
@@ -157,16 +165,12 @@ class Cart extends Component {
 
   handleRemoveCartItem = (slug) => {
     removeCartItem(slug)
-    this.setState({
-      cart: getCartItems(),
-    })
+    this.getCartItems()
   }
 
   handleAddCartItem = (slug) => {
     addCartItem(slug)
-    this.setState({
-      cart: getCartItems(),
-    })
+    this.getCartItems()
   }
 
   handleInputChange = (fieldId, newValue) => {
@@ -178,57 +182,49 @@ class Cart extends Component {
   render () {
     const { pageStatus, cart } = this.state
     const pageTitle = 'Comprar'
-
+    debugger
     return (
-      <BaseLayout title={pageTitle}>
-        <Root>
-          <Spacer>
-            <Breadcrumb currentTitle={pageTitle} fatherLink='/' fatherTitle='Home' />
-            {(() => {
-              if (pageStatus === PAGE_STATUS_SENDING) {
-                return <p>Enviando...</p>
-              }
-              if (pageStatus === PAGE_STATUS_SENT) {
-                return <p>O pedido de compra foi enviado com sucesso. Será contactado em breve para dar continuidade à sua compra. Caso tenha que fazer alguma alteração por favor contacte: <a href={`mailto:${process.env.SALES_EMAIL}`}>{process.env.SALES_EMAIL}</a></p>
-              }
-              if (pageStatus === PAGE_STATUS_ERROR) {
-                return <p>Houve um erro a processar o seu pedido. Por favor contacte nos directamente <a href={`mailto:${process.env.SALES_EMAIL}`}>{process.env.SALES_EMAIL}</a></p>
-              }
-              if (pageStatus === PAGE_STATUS_FORM) {
-                return (
-                  <Fragment>
-                    <Section>
-                      <Title title='Resumo do Pedido' />
-                      <div>
-                        {
-                          !cart
-                            ? <p>no items on the cart</p>
-                            : Object.keys(cart).map(productSlug =>
-                              <ProductWrap key={productSlug}>
-                                {`${productSlug} - quantidade: ${cart[productSlug].quantity}`}
-                                <IconRoot onClick={() => this.handleRemoveCartItem(productSlug)} svg={<MinusSvg />} />
-                                <IconRoot onClick={() => this.handleAddCartItem(productSlug)} svg={<PlusSvg />} />
-                              </ProductWrap>
-                            )
-                        }
-                      </div>
-                    </Section>
-                    <Section>
-                      <Title title='Detalhes de Faturação' />
-                      <form onSubmit={this.handleSubmitRequest}>
-                        { Object.keys(FIELDS).map(fieldId =>
-                          <CustomInput fieldId={fieldId} key={fieldId} {...FIELDS[fieldId]} onInputChange={this.handleInputChange} value={this.state[fieldId]} />
-                        )}
-                        <CustomButton type='submit'>Enviar Pedido</CustomButton>
-                      </form>
-                    </Section>
-                  </Fragment>
-                )
-              }
-            })()}
-          </Spacer>
-        </Root>
-      </BaseLayout>
+      <AllMatchMedia>
+        {
+          ({ isCompactVersionViewport, isWideVersionViewport }) =>
+            <BaseLayout title={pageTitle}>
+              <Root>
+                <Spacer>
+                  <Breadcrumb currentTitle={pageTitle} fatherLink='/' fatherTitle='Home' />
+                  {(() => {
+                    if (pageStatus === PAGE_STATUS_SENDING) {
+                      return <p>Enviando...</p>
+                    }
+                    if (pageStatus === PAGE_STATUS_SENT) {
+                      return <p>O pedido de compra foi enviado com sucesso. Será contactado em breve para dar continuidade à sua compra. Caso tenha que fazer alguma alteração por favor contacte: <a href={`mailto:${process.env.SALES_EMAIL}`}>{process.env.SALES_EMAIL}</a></p>
+                    }
+                    if (pageStatus === PAGE_STATUS_ERROR) {
+                      return <p>Houve um erro a processar o seu pedido. Por favor contacte nos directamente <a href={`mailto:${process.env.SALES_EMAIL}`}>{process.env.SALES_EMAIL}</a></p>
+                    }
+                    if (pageStatus === PAGE_STATUS_FORM) {
+                      return (
+                        <Fragment>
+                          <Section>
+                            <CartSummary cart={cart} onAddCartItem={this.handleAddCartItem} onRemoveCartItem={this.handleRemoveCartItem} />
+                          </Section>
+                          <Section>
+                            <Title title='Detalhes de Faturação' />
+                            <form onSubmit={this.handleSubmitRequest}>
+                              { Object.keys(FIELDS).map(fieldId =>
+                                <CustomInput fieldId={fieldId} key={fieldId} {...FIELDS[fieldId]} onInputChange={this.handleInputChange} value={this.state[fieldId]} />
+                              )}
+                              <CustomButton type='submit'>Enviar Pedido</CustomButton>
+                            </form>
+                          </Section>
+                        </Fragment>
+                      )
+                    }
+                  })()}
+                </Spacer>
+              </Root>
+            </BaseLayout>
+        }
+      </AllMatchMedia>
     )
   }
 }
