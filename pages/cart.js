@@ -182,7 +182,6 @@ class Cart extends Component {
   render () {
     const { pageStatus, cart } = this.state
     const pageTitle = 'Comprar'
-    debugger
     return (
       <AllMatchMedia>
         {

@@ -76,7 +76,7 @@ const Footer = () => (
       </Col>
     </Section>
     <Copyright>
-      <span>2010 © GOIABA CLOSES - Todos os direitos reservados.</span>
+      <span>2018 © GOIABA CLOSES - Todos os direitos reservados.</span>
     </Copyright>
   </FooterContainer>
 )
