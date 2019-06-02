@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react'
 import styled from 'styled-components'
-import mailgun from 'mailgun.js'
 
 import BaseLayout from '../components/layouts/base'
 import Breadcrumb from '../components/breadcrumb'
@@ -26,7 +25,6 @@ const Section = styled.div`
   margin-top: 30px;
   margin-bottom: 30px;
 `
-
 
 const PAGE_STATUS_FORM = 'PAGE_STATUS_FORM'
 const PAGE_STATUS_SENDING = 'PAGE_STATUS_SENDING'
@@ -124,35 +122,27 @@ class Cart extends Component {
     this.setState({ cart })
   }
 
-  _generateEmailBody = () => {
-    let clientDetails = 'Cliente: '
+  handleSubmitRequest = () => {
+    event.preventDefault()
+    this.setState({ pageStatus: PAGE_STATUS_SENDING })
+
+    let clientDetails = {}
     Object.keys(FIELDS).map(fieldId => {
       clientDetails += `${fieldId}: ${this.state[fieldId]}  -  `
     })
     const { cart } = this.state
-    let cartDetails = 'Pedido: '
-    Object.keys(cart).map(productSlug => {
-      cartDetails += `Slug: ${productSlug} / quantidade ${cart[productSlug].quantity}  -  `
+
+    fetch('https://goiaba-clothes-be.tpombeiro.now.sh', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        clientDetails,
+        cart,
+      }),
     })
-
-    return `Recebemos um pedido de compra. ${clientDetails} // ${cartDetails}`
-  }
-
-  handleSubmitRequest = () => {
-    event.preventDefault()
-    this.setState({ pageStatus: PAGE_STATUS_SENDING })
-    let mg = mailgun.client({
-      username: 'api',
-      key: process.env.MAILGUN_API_KEY,
-    })
-    const data = {
-      from: `Goiaba Clothes Site <${process.env.MAILGUN_DOMAIN}>`,
-      to: [process.env.TECNICAL_EMAIL, process.env.SALES_EMAIL],
-      subject: 'Goiaba Clothes Site - Pedido de compra',
-      text: this._generateEmailBody(),
-    }
-
-    mg.messages.create(process.env.MAILGUN_DOMAIN, data)
+      .then(response => response.json())
       .then(msg => {
         console.log(msg)
         this.setState({ pageStatus: PAGE_STATUS_SENT })
