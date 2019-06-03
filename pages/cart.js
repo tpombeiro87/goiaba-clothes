@@ -128,7 +128,7 @@ class Cart extends Component {
 
     let clientDetails = {}
     Object.keys(FIELDS).map(fieldId => {
-      clientDetails += `${fieldId}: ${this.state[fieldId]}  -  `
+      clientDetails[fieldId] = this.state[fieldId]
     })
     const { cart } = this.state
 
