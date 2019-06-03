@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import styled from 'styled-components'
+import uuidv4 from 'uuid/v4'
 
 import BaseLayout from '../components/layouts/base'
 import Breadcrumb from '../components/breadcrumb'
@@ -123,6 +124,7 @@ class Cart extends Component {
   }
 
   handleSubmitRequest = () => {
+    const uuid = uuidv4()
     event.preventDefault()
     this.setState({ pageStatus: PAGE_STATUS_SENDING })
 
@@ -138,17 +140,18 @@ class Cart extends Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
+        uuid,
         clientDetails,
         cart,
       }),
     })
       .then(response => response.json())
       .then(msg => {
-        console.log(msg)
+        console.log(uuid, msg)
         this.setState({ pageStatus: PAGE_STATUS_SENT })
       })
       .catch(err => {
-        console.log(err)
+        console.log(uuid, err)
         this.setState({ pageStatus: PAGE_STATUS_ERROR })
       })
   }
