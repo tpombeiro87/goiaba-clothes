@@ -25,7 +25,6 @@ const Wrapper = styled.div`
 
 const Spacer = styled.div`
   margin-bottom: 10px;
-  margin-left: 35px;
 `
 
 const InfoWrapper = styled.div`
@@ -103,11 +102,11 @@ class ProductPage extends Component {
             <RegularPage>
               <Wrapper>
                 <Spacer>
-                  <Breadcrumb currentTitle={product.fields.title} fatherLink='/products-list' fatherTitle='Inicío' isVisible={isCompactVersionViewport} />
+                  <Breadcrumb currentTitle={product.fields.title} fatherLink='/products-list' fatherTitle='Colecção' isVisible={isCompactVersionViewport} />
                 </Spacer>
                 <Slider images={product.fields.photos.map(photo => photo.fields.file.url)} isCompactVersionViewport={isCompactVersionViewport} />
                 <InfoWrapper>
-                  <Breadcrumb currentTitle={product.fields.title} fatherLink='/products-list' fatherTitle='Inicío' isVisible={isWideVersionViewport} />
+                  <Breadcrumb currentTitle={product.fields.title} fatherLink='/products-list' fatherTitle='Colecção' isVisible={isWideVersionViewport} />
                   <ProductTitle>{product.fields.title}</ProductTitle>
                   <ProductPrice>
                     {product.fields.price

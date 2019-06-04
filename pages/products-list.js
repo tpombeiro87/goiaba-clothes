@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import RegularPage from '../components/layouts/regular-page'
 import { sortingOptions, DropdownSorter } from '../components/dropdown-sorter'
 import { products } from '../contentful-data/utils'
+import Breadcrumb from '../components/breadcrumb'
 
 const DEFAULT_PRODUCT_IMAGE = '/static/no-product-image.png'
 
@@ -12,16 +13,8 @@ const TopWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 20px;
+  margin-top: 30px;
   margin-bottom: 10px;
-`
-
-const Title = styled.h1`
-  font-family: Arial, sans-serif;
-  font-size: 15px;
-  font-stretch: 100%;
-  font-weight: 700;
-  text-transform: uppercase;
 `
 
 const ProductListWrapper = styled.div`
@@ -104,7 +97,7 @@ class ProductList extends Component {
     return (
       <RegularPage>
         <TopWrapper>
-          <Title>Colecção</Title>
+          <Breadcrumb currentTitle='Colecção' fatherLink='/' fatherTitle='Home' />
           <DropdownSorter onSortingChange={this.handleSortingChange} sortingBy={sortingBy} />
         </TopWrapper>
         <ProductListWrapper>
