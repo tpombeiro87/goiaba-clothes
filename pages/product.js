@@ -18,12 +18,15 @@ const Wrapper = styled.div`
   margin-top: 30px;
   display: flex;
 
+  margin-left: -32px;
   @media ${compactVersionMediaQuery} {
+    margin-left: -15px;
     flex-direction: column;
   }
 `
 
 const Spacer = styled.div`
+  margin-top: 30px;
   margin-bottom: 10px;
 `
 
@@ -98,15 +101,14 @@ class ProductPage extends Component {
     return (
       <AllMatchMedia>
         {
-          ({ isCompactVersionViewport, isWideVersionViewport }) =>
+          ({ isCompactVersionViewport }) =>
             <RegularPage>
+              <Spacer>
+                <Breadcrumb currentTitle={product.fields.title} fatherLink='/products-list' fatherTitle='Colecção' isVisible />
+              </Spacer>
               <Wrapper>
-                <Spacer>
-                  <Breadcrumb currentTitle={product.fields.title} fatherLink='/products-list' fatherTitle='Colecção' isVisible={isCompactVersionViewport} />
-                </Spacer>
                 <Slider images={product.fields.photos.map(photo => photo.fields.file.url)} isCompactVersionViewport={isCompactVersionViewport} />
                 <InfoWrapper>
-                  <Breadcrumb currentTitle={product.fields.title} fatherLink='/products-list' fatherTitle='Colecção' isVisible={isWideVersionViewport} />
                   <ProductTitle>{product.fields.title}</ProductTitle>
                   <ProductPrice>
                     {product.fields.price
