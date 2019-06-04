@@ -1,8 +1,18 @@
+require('dotenv').config()
+
+const staticPagesExportMap = require('./server/pages-export')
+
 module.exports = {
-  webpack: config => {
-    config.node = {
-      fs: 'empty',
-    }
-    return config
+  exportPathMap () {
+    const staticPagesExport = staticPagesExportMap()
+    console.log('exportPathMap----------', staticPagesExport)
+    return staticPagesExport
   },
 }
+
+// webpack: config => {
+//   config.node = {
+//     fs: 'empty',
+//   }
+//   return config
+// },
