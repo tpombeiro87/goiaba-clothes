@@ -107,7 +107,7 @@ class ProductList extends Component {
               const mainImage = photos.length > 0 ? photos[0].fields.file.url : DEFAULT_PRODUCT_IMAGE
               const hoverImage = photos.length > 1 ? photos[1].fields.file.url : null
               return (
-                <Link href={`/product?slug=${product.fields.slug}`} key={product.fields.slug} passHref prefetch>
+                <Link href={`/product/${product.fields.slug}`} key={product.fields.slug} passHref>
                   <ProductWrapper>
                     <ProductThumbnail
                       hoverImage={hoverImage}
