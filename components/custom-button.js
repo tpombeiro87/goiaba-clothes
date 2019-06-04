@@ -3,7 +3,10 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
 const ButtonElement = styled.button`
-    max-width: 300px;
+    ${props => props.fullWidth
+    ? 'width: 100%;'
+    : 'max-width: 300px;'}
+
     margin: 15px 0 15px 0;
     text-transform: uppercase;
     font-size: 12px;
@@ -31,6 +34,7 @@ const Button = ({ children, onClick, ...rest }) => (
 Button.propTypes = {
   children: PropTypes.node,
   onClick: PropTypes.func,
+  fullWidth: PropTypes.bool,
 }
 
 export default Button

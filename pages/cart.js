@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
 import uuidv4 from 'uuid/v4'
 
@@ -10,21 +10,41 @@ import CustomButton from '../components/custom-button'
 import CartSummary from '../components/cart-summary'
 import { getCartItems, removeCartItem, addCartItem } from '../components/utils/local-storage'
 import { productContentFetcher } from '../contentful-data/utils'
-import { compactVersionMediaQuery, AllMatchMedia } from '../components/utils/responsive-utils'
+import { compactVersionMediaQuery, wideVersionMediaQuery, AllMatchMedia } from '../components/utils/responsive-utils'
 
 const Spacer = styled.div`
   margin-bottom: 40px;
-  margin-left: 35px;
+  width: 100%;
+`
+
+const ContentForm = styled.form`
+  display: flex;
+  @media ${compactVersionMediaQuery} {
+    flex-direction: column;
+  }
 `
 
 const Root = styled.div`
   margin-top: 2em;
   display: flex;
+  max-width: 985px;
+  width: 100%;
 `
 
-const Section = styled.div`
-  margin-top: 30px;
+const CartSection = styled.div`
+  @media ${wideVersionMediaQuery} {
+    width: 350px;
+  }
+
+  margin-top: 10px;
   margin-bottom: 30px;
+  margin-right: 50px;
+`
+const InputsSection = styled.div`
+  flex-grow: 1;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  margin-right: 50px;
 `
 
 const PAGE_STATUS_FORM = 'PAGE_STATUS_FORM'
@@ -33,14 +53,8 @@ const PAGE_STATUS_SENT = 'PAGE_STATUS_SENT'
 const PAGE_STATUS_ERROR = 'PAGE_STATUS_ERROR'
 
 const FIELDS = {
-  firstName: {
-    label: 'Primeiro Nome',
-    size: 'small',
-    type: 'text',
-    required: true,
-  },
-  lastName: {
-    label: 'Ultimo Nome',
+  name: {
+    label: 'Nome',
     size: 'small',
     type: 'text',
     required: true,
@@ -172,13 +186,40 @@ class Cart extends Component {
     this.setState({ ...newState })
   }
 
+  renderContactForm = (isCompactVersionViewport) => {
+    const { cart } = this.state
+    return (
+      <ContentForm onSubmit={this.handleSubmitRequest}>
+        { isCompactVersionViewport &&
+          <CartSection>
+            <CartSummary cart={cart} onAddCartItem={this.handleAddCartItem} onRemoveCartItem={this.handleRemoveCartItem} />
+          </CartSection>
+        }
+        <InputsSection>
+          <Title title='Detalhes de Faturação' />
+          { Object.keys(FIELDS).map(fieldId =>
+            <CustomInput fieldId={fieldId} key={fieldId} {...FIELDS[fieldId]} onInputChange={this.handleInputChange} value={this.state[fieldId]} />
+          )}
+          { isCompactVersionViewport &&
+            <CustomButton fullWidth type='submit'>Enviar Pedido</CustomButton> }
+        </InputsSection>
+        { !isCompactVersionViewport &&
+          <CartSection>
+            <CartSummary cart={cart} onAddCartItem={this.handleAddCartItem} onRemoveCartItem={this.handleRemoveCartItem} />
+            <CustomButton fullWidth type='submit'>Enviar Pedido</CustomButton>
+          </CartSection>
+        }
+      </ContentForm>
+    )
+  }
+
   render () {
-    const { pageStatus, cart } = this.state
+    const { pageStatus } = this.state
     const pageTitle = 'Comprar'
     return (
       <AllMatchMedia>
         {
-          ({ isCompactVersionViewport, isWideVersionViewport }) =>
+          ({ isCompactVersionViewport }) =>
             <BaseLayout title={pageTitle}>
               <Root>
                 <Spacer>
@@ -194,22 +235,7 @@ class Cart extends Component {
                       return <p>Houve um erro a processar o seu pedido. Por favor contacte nos directamente <a href={`mailto:${process.env.SALES_EMAIL}`}>{process.env.SALES_EMAIL}</a></p>
                     }
                     if (pageStatus === PAGE_STATUS_FORM) {
-                      return (
-                        <Fragment>
-                          <Section>
-                            <CartSummary cart={cart} onAddCartItem={this.handleAddCartItem} onRemoveCartItem={this.handleRemoveCartItem} />
-                          </Section>
-                          <Section>
-                            <Title title='Detalhes de Faturação' />
-                            <form onSubmit={this.handleSubmitRequest}>
-                              { Object.keys(FIELDS).map(fieldId =>
-                                <CustomInput fieldId={fieldId} key={fieldId} {...FIELDS[fieldId]} onInputChange={this.handleInputChange} value={this.state[fieldId]} />
-                              )}
-                              <CustomButton type='submit'>Enviar Pedido</CustomButton>
-                            </form>
-                          </Section>
-                        </Fragment>
-                      )
+                      return this.renderContactForm(isCompactVersionViewport)
                     }
                   })()}
                 </Spacer>
