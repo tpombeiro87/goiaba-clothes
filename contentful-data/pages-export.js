@@ -22,10 +22,6 @@ const staticPagesExportMap = async () => {
     }),
     ...formatExportMap({
       page: '/_error',
-      path: '/error-page',
-    }),
-    ...formatExportMap({
-      page: '/_error',
       path: '/404.html',
     }),
   }
