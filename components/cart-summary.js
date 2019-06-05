@@ -72,7 +72,7 @@ const CartSummary = ({ cart, onRemoveCartItem, onAddCartItem }) => {
                 total += cartItem.quantity * cartItem.fields.price
                 return (
                   <ProductWrap key={productSlug}>
-                    <Link passHref url={`/product?slug=${productSlug}`}>
+                    <Link passHref url={`/product/${productSlug}`}>
                       <MiniImg src={imageSrc} />
                     </Link>
                     <Details>{`${productSlug} - #${cartItem.quantity}`}</Details>
