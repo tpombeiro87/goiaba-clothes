@@ -16,8 +16,8 @@ const ScrollToTopBtnWrapper = styled.button`
   z-index: 999;
   text-decoration: none;
   position: fixed;
-  bottom: 30px;
-  right: 10px;
+  bottom: 15px;
+  right: 17px;
   overflow: hidden;
   width: 37px;
   height: 37px;
