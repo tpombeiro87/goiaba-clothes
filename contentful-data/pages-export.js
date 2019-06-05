@@ -20,6 +20,14 @@ const staticPagesExportMap = async () => {
       page: '/pages-index',
       path: '/pages-index',
     }),
+    ...formatExportMap({
+      page: '/_error',
+      path: '/error-page',
+    }),
+    ...formatExportMap({
+      page: '/_error',
+      path: '/404.html',
+    }),
   }
   let staticProducts = {}
 
