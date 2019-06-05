@@ -117,8 +117,9 @@ class ProductPage extends Component {
 
         <meta property='og:image:url' content={`http:${mainImage}`} />
         <meta property='og:image:secure_url' content={`https:${mainImage}`} />
-        <meta property='og:image:width' content='94' />
-        <meta property='og:image:height' content='125' />
+        <meta property='og:image:width' content='251' />
+        <meta property='og:image:height' content='334' />
+        <meta property='og:image:type' content='image/jpeg' />
       </Fragment>
     )
     /* eslint-enable react/jsx-sort-props */
