@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { withRouter } from 'next/router'
-import ErrorPage from 'next/error'
 
 import RegularPage from '../components/layouts/regular-page'
 import Slider from '../components/slider'
@@ -13,6 +12,8 @@ import Breadcrumb from '../components/breadcrumb'
 import Share from '../components/share'
 import CustomButton from '../components/custom-button'
 import { addCartItem } from '../components/utils/local-storage'
+
+import ErrorPage from './_error'
 
 const Wrapper = styled.div`
   margin-top: 30px;
@@ -90,7 +91,7 @@ class ProductPage extends Component {
     const slug = router.query.slug
     const product = productContentFetcher(slug)
     if (!product) {
-      return <ErrorPage />
+      return <ErrorPage statusCode={404} />
     }
     const description = product.fields.description
       ? product.fields.description // .replace(/(?:\r\n|\r|\n)/g, '<br>')
