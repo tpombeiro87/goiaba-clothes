@@ -49,6 +49,7 @@ export default class Layout extends Component {
   static propTypes = {
     children: PropTypes.node,
     title: PropTypes.string,
+    metaTags: PropTypes.node,
   }
 
   constructor (props) {
@@ -84,7 +85,7 @@ export default class Layout extends Component {
   }
 
   render () {
-    const { children, title = '' } = this.props
+    const { children, title = '', metaTags } = this.props
     const { hasScrooled } = this.state
 
     return (
@@ -97,6 +98,7 @@ export default class Layout extends Component {
                 : `Goiaba - site`
             }
           </title>
+          { metaTags }
         </Head>
 
         <Header ref={this.headerRef} />

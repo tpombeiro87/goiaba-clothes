@@ -6,8 +6,7 @@ import RegularPage from '../components/layouts/regular-page'
 import { sortingOptions, DropdownSorter } from '../components/dropdown-sorter'
 import { products } from '../contentful-data/utils'
 import Breadcrumb from '../components/breadcrumb'
-
-const DEFAULT_PRODUCT_IMAGE = '/static/no-product-image.png'
+import { DEFAULT_PRODUCT_IMAGE } from '../components/utils/constants'
 
 const TopWrapper = styled.div`
   display: flex;

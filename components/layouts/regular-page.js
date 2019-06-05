@@ -23,10 +23,10 @@ const Text = styled.div`
   }
 `
 
-const RegularPage = ({ pageId, children }) => {
+const RegularPage = ({ pageId, metaTags, children }) => {
   const pageData = pageId ? pageContentFetcher(pageId) : { fields: {} }
   return (
-    <BaseLayout title={pageData.fields.title}>
+    <BaseLayout metaTags={metaTags} title={pageData.fields.title}>
       { children ||
         <Fragment>
           <Spacer />
@@ -44,6 +44,7 @@ const RegularPage = ({ pageId, children }) => {
 RegularPage.propTypes = {
   children: PropTypes.node,
   pageId: PropTypes.string,
+  metaTags: PropTypes.node,
 }
 
 export default RegularPage

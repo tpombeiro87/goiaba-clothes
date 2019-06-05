@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { withRouter } from 'next/router'
 
-import RegularPage from '../components/layouts/regular-page'
+import BaseLayout from '../components/layouts/base'
 import Slider from '../components/slider'
 import { productContentFetcher } from '../contentful-data/utils'
 import { CollapsibleContainer } from '../components/collapsible'
@@ -12,6 +12,7 @@ import Breadcrumb from '../components/breadcrumb'
 import Share from '../components/share'
 import CustomButton from '../components/custom-button'
 import { addCartItem } from '../components/utils/local-storage'
+import { DEFAULT_PRODUCT_IMAGE } from '../components/utils/constants'
 
 import ErrorPage from './_error'
 
@@ -88,29 +89,47 @@ class ProductPage extends Component {
   render () {
     const { showCartMsg } = this.state
     const { router } = this.props
+
     const slug = router.query.slug
     const product = productContentFetcher(slug)
     if (!product) {
       return <ErrorPage statusCode={404} />
     }
+    const title = product.fields.title
+    const url = `https://www.goiabaclothes.pt${router.asPath}`
+    const mainImage = product.fields.photos.length > 0
+      ? product.fields.photos[0].fields.file.ur
+      : DEFAULT_PRODUCT_IMAGE
+
     const description = product.fields.description
       ? product.fields.description // .replace(/(?:\r\n|\r|\n)/g, '<br>')
       : 'Sem descrição'
     const characteristics = product.fields.characteristics
       ? product.fields.characteristics // .replace(/(?:\r\n|\r|\n)/g, '<br>')
       : 'Sem características'
+    /* eslint-disable react/jsx-sort-props */
+    const metaTags = (
+      <Fragment>
+        <meta property='og:url' content={url} />
+        <meta property='og:type' content='article' />
+        <meta property='og:title' content={title} />
+        <meta property='og:description' content={description} />
+        <meta property='og:image' content={mainImage} />
+      </Fragment>
+    )
+    /* eslint-enable react/jsx-sort-props */
     return (
       <AllMatchMedia>
         {
           ({ isCompactVersionViewport }) =>
-            <RegularPage>
+            <BaseLayout metaTags={metaTags} title={title}>
               <Spacer>
-                <Breadcrumb currentTitle={product.fields.title} fatherLink='/products-list' fatherTitle='Colecção' isVisible />
+                <Breadcrumb currentTitle={title} fatherLink='/products-list' fatherTitle='Colecção' isVisible />
               </Spacer>
               <Wrapper>
                 <Slider images={product.fields.photos.map(photo => photo.fields.file.url)} isCompactVersionViewport={isCompactVersionViewport} />
                 <InfoWrapper>
-                  <ProductTitle>{product.fields.title}</ProductTitle>
+                  <ProductTitle>{title}</ProductTitle>
                   <ProductPrice>
                     {product.fields.price
                       ? `${(product.fields.price).toFixed(2)} €`
@@ -130,12 +149,12 @@ class ProductPage extends Component {
                     </ProductDescription>
                   </CollapsibleContainer>
                   <CollapsibleContainer label='Partilhar'>
-                    <Share />
+                    <Share url={url} />
                   </CollapsibleContainer>
 
                 </InfoWrapper>
               </Wrapper>
-            </RegularPage>
+            </BaseLayout>
         }
       </AllMatchMedia>
     )

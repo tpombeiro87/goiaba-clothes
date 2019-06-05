@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { withRouter } from 'next/router'
 
 import IconRoot from '../components/icons/icon-root'
 import FacebookSvg from '../components/icons/facebook-svg'
@@ -11,6 +10,11 @@ import PintrestSvg from '../components/icons/pintrest-svg'
 const COPY_NOT_STARTED = 'COPY_NOT_STARTED'
 const COPY_ONGOING = 'COPY_ONGOING'
 const COPY_SUCCESS = 'COPY_SUCCESS'
+
+const Container = styled.div`
+  display: flex;
+  flex-flow: column;
+`
 
 const Wrap = styled.div`
   display: flex;
@@ -29,6 +33,11 @@ const CopyInput = styled.input`
 
 const Anchor = styled.a`
   cursor: pointer;
+`
+
+const InfoMessage = styled.h3`
+  font-size: 14px;
+  color: #9E9E9E;
 `
 
 class Share extends Component {
@@ -50,29 +59,32 @@ class Share extends Component {
 
   render () {
     const { copy } = this.state
-    const { router } = this.props
-    const url = `https://www.goiabaclothes.pt${router.asPath}`
+    const { url } = this.props
+
     return (
-      <Wrap>
-        <Anchor href={`https://www.facebook.com/sharer/sharer.php?u=${url}`} rel='noopener noreferrer' target='_blank'>
-          <IconRoot svg={<FacebookSvg />} />
-        </Anchor>
-        <Anchor onClick={this.handleCopyToClipboard}>
-          <IconRoot svg={<LinkSvg />} />
-        </Anchor>
-        <Anchor href={`https://www.pinterest.pt/pin/create/button/?url=${url}&autologin=true`} rel='noopener noreferrer' target='_blank'>
-          <IconRoot svg={<PintrestSvg />} />
-        </Anchor>
-        { copy === COPY_ONGOING &&
-          <CopyInput innerRef={this.textArea} value={url} />
-        }
-      </Wrap>
+      <Container>
+        <Wrap>
+          <Anchor href={`https://www.facebook.com/sharer/sharer.php?u=${url}`} rel='noopener noreferrer' target='_blank'>
+            <IconRoot svg={<FacebookSvg />} />
+          </Anchor>
+          <Anchor href={`https://www.pinterest.pt/pin/create/button/?url=${url}&autologin=true`} rel='noopener noreferrer' target='_blank'>
+            <IconRoot svg={<PintrestSvg />} />
+          </Anchor>
+          <Anchor onClick={this.handleCopyToClipboard}>
+            <IconRoot svg={<LinkSvg />} />
+          </Anchor>
+          { copy === COPY_ONGOING &&
+            <CopyInput innerRef={this.textArea} value={url} />
+          }
+        </Wrap>
+        {copy === COPY_SUCCESS && <InfoMessage>O link deste artigo foi copiado. Pode partilhar colando onde quiser. </InfoMessage>}
+      </Container>
     )
   }
 }
 
 Share.propTypes = {
-  router: PropTypes.object,
+  url: PropTypes.object,
 }
 
-export default withRouter(Share)
+export default Share
