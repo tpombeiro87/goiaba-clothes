@@ -98,7 +98,7 @@ class ProductPage extends Component {
     const title = product.fields.title
     const url = `${DOMAIN}${router.asPath}`
     const mainImage = product.fields.photos.length > 0
-      ? product.fields.photos[0].fields.file.url.replace(/(?:\/\/)/g, '')
+      ? `${product.fields.photos[0].fields.file.url}`
       : `${DOMAIN}/static/logo/big.png`
 
     const description = product.fields.description
@@ -114,7 +114,11 @@ class ProductPage extends Component {
         <meta property='og:type' content='article' />
         <meta property='og:title' content={title} />
         <meta property='og:description' content={description} />
-        <meta property='og:image' content={mainImage} />
+
+        <meta property='og:image:url' content={`http:${mainImage}`} />
+        <meta property='og:image:secure_url' content={`https:${mainImage}`} />
+        <meta property='og:image:width' content='94' />
+        <meta property='og:image:height' content='125' />
       </Fragment>
     )
     /* eslint-enable react/jsx-sort-props */
