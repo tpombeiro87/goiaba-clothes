@@ -1,8 +1,8 @@
 {
   "name": "Goiaba clothes site",
-  "description": "A barebones Next.js store powered by moltin",
+  "description": "Goiaba clothes website",
   "repository": "https://gitlab.com/tpombeiro87/goiaba-clothes",
-  "logo": "https://www.moltin.com/img/icons/favicons/apple-touch-icon.png",
+  "logo": "https://www.goiabaclothes.pt/static/logo/big.png",
   "keywords": ["goiaba", "clothes", "site"],
   "success_url": "/"
 }
