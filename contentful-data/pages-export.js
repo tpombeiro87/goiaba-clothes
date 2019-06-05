@@ -11,7 +11,16 @@ const formatExportMap = ({ path, page, query }) => {
 }
 
 const staticPagesExportMap = async () => {
-  let staticPages = {}
+  let staticPages = {
+    ...formatExportMap({
+      page: '/products-list',
+      path: '/products-list',
+    }),
+    ...formatExportMap({
+      page: '/pages-index',
+      path: '/pages-index',
+    }),
+  }
   let staticProducts = {}
 
   pages.forEach(page => {
