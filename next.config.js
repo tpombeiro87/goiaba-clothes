@@ -1,6 +1,6 @@
 require('dotenv').config()
 
-const staticPagesExportMap = require('./server/pages-export')
+const staticPagesExportMap = require('./contentful-data/pages-export')
 
 module.exports = {
   exportPathMap () {
