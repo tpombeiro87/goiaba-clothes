@@ -12,7 +12,7 @@ import Breadcrumb from '../components/breadcrumb'
 import Share from '../components/share'
 import CustomButton from '../components/custom-button'
 import { addCartItem } from '../components/utils/local-storage'
-import { DEFAULT_PRODUCT_IMAGE } from '../components/utils/constants'
+import { DOMAIN, DEFAULT_PRODUCT_IMAGE } from '../components/utils/constants'
 
 import ErrorPage from './_error'
 
@@ -96,10 +96,10 @@ class ProductPage extends Component {
       return <ErrorPage statusCode={404} />
     }
     const title = product.fields.title
-    const url = `https://www.goiabaclothes.pt${router.asPath}`
+    const url = `${DOMAIN}${router.asPath}`
     const mainImage = product.fields.photos.length > 0
-      ? product.fields.photos[0].fields.file.ur
-      : DEFAULT_PRODUCT_IMAGE
+      ? product.fields.photos[0].fields.file.url.replace(/(?:\/\/)/g, '')
+      : `${DOMAIN}/static/logo/big.png`
 
     const description = product.fields.description
       ? product.fields.description // .replace(/(?:\r\n|\r|\n)/g, '<br>')
