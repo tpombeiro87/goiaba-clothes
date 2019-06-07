@@ -132,9 +132,18 @@ class ProductPage extends Component {
                 <Breadcrumb currentTitle={title} fatherLink='/products-list' fatherTitle='Colecção' isVisible />
               </Spacer>
               <Wrapper>
-                <Slider images={product.fields.photos.map(photo => photo.fields.file.url)} isCompactVersionViewport={isCompactVersionViewport} />
+                <Slider
+                  images={product.fields.photos.length
+                    ? product.fields.photos.map(photo => photo.fields.file.url)
+                    : [DEFAULT_PRODUCT_IMAGE]
+                  }
+                  isCompactVersionViewport={isCompactVersionViewport}
+                />
                 <InfoWrapper>
-                  <ProductTitle>{title}</ProductTitle>
+                  <ProductTitle>
+                    {product.fields.highlight && <Fragment><img alt='Destacado' src='/static/icons/star.png' />&nbsp;</Fragment> }
+                    {title}
+                  </ProductTitle>
                   <ProductPrice>
                     {product.fields.price
                       ? `${(product.fields.price).toFixed(2)} €`

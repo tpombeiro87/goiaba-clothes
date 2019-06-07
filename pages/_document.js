@@ -2,6 +2,8 @@ import React from 'react'
 import Document, { Head, Main, NextScript } from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
 
+import AnalyticsContainer from '../components/analytics/analytics-container'
+
 export default class MyDocument extends Document {
   static async getInitialProps (ctx) {
     const sheet = new ServerStyleSheet()
@@ -36,6 +38,7 @@ export default class MyDocument extends Document {
           {this.props.styleTags}
         </Head>
         <body>
+          <AnalyticsContainer />
           <Main />
           <NextScript />
         </body>

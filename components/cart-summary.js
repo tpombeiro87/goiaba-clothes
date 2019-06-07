@@ -75,7 +75,7 @@ const CartSummary = ({ cart, onRemoveCartItem, onAddCartItem }) => {
                     <Link passHref url={`/product/${productSlug}`}>
                       <MiniImg src={imageSrc} />
                     </Link>
-                    <Details>{`${productSlug} - #${cartItem.quantity}`}</Details>
+                    <Details>{`${cartItem.fields.title} - #${cartItem.quantity}`}</Details>
                     <ControlsWrap>
                       <ControlWrap><IconRoot onClick={() => onRemoveCartItem(productSlug)} svg={<MinusSvg />} /></ControlWrap>
                       <ControlWrap><IconRoot onClick={() => onAddCartItem(productSlug)} svg={<PlusSvg />} /></ControlWrap>
