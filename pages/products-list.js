@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import Link from 'next/link'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 import RegularPage from '../components/layouts/regular-page'
 import { sortingOptions, DropdownSorter } from '../components/dropdown-sorter'
@@ -63,31 +64,49 @@ const ProductPrice = styled.h3`
   font-weight: 700;
 `
 
+const sortProducts = (sortingBy) => {
+  let sortedProducts = products
+    .slice()
+    .sort(sortingOptions.find(sortingOption => sortingOption.value === sortingBy).sortFn)
+
+  if (sortingBy.indexOf('desc') !== -1) {
+    sortedProducts = sortedProducts.reverse()
+  }
+  return sortedProducts
+}
+
+/**
+ * THE BUG
+ * so wen the server dom is diferent from the generated at first's renders (render and even if we trigger on the did mount)
+ * React does not update the img component even when explicitly the properties have changed
+ * Does not happens to p elements
+ *
+ * Another curiosity is that the server generates a sorted list different than the browser for no evident reason
+ */
 class ProductList extends Component {
-  constructor () {
-    super()
+  static propTypes = {
+    initialSortedProducts: PropTypes.array,
+  }
+
+  static getInitialProps () {
+    return { initialSortedProducts: sortProducts('highlight') }
+  }
+
+  constructor (props) {
+    super(props)
     const sortingBy = 'highlight'
     this.state = {
       sortingBy,
-      sortedProducts: this.sortProducts(sortingBy),
+      sortedProducts: props.initialSortedProducts,
+      // sortedProducts: sortProducts(sortingBy), // uncomemnt this line to generate bug
     }
-  }
-
-  sortProducts (sortingBy) {
-    let sortedProducts = [...products]
-      .sort(sortingOptions.find(sortingOption => sortingOption.value === sortingBy).sortFn)
-
-    if (sortingBy.indexOf('desc') !== -1) {
-      sortedProducts = sortedProducts.reverse()
-    }
-    return sortedProducts
   }
 
   handleSortingChange = (event) => {
     const sortingBy = event.target.value
     this.setState({
       sortingBy,
-      sortedProducts: this.sortProducts(sortingBy),
+      sortedProducts: sortProducts(sortingBy),
     })
   }
 
@@ -105,15 +124,27 @@ class ProductList extends Component {
               const photos = product.fields.photos
               const mainImage = photos.length > 0 ? photos[0].fields.file.url : DEFAULT_PRODUCT_IMAGE
               const hoverImage = photos.length > 1 ? photos[1].fields.file.url : null
+              // const z = Math.random()
               return (
                 <Link href={`/product/${product.fields.slug}`} key={product.fields.slug} passHref>
                   <ProductWrapper>
                     <ProductThumbnail
+                      alt={product.fields.title}
                       hoverImage={hoverImage}
-                      key={product.fields.slug}
-                      mainImage={mainImage} />
+                      mainImage={mainImage}
+                    />
+                    { /* DEBUGING WIERD BEHAVIOUR THAT THE IMAGE DOES NOT UPDATE ON THE FIRST RENDER
+                      <p
+                        src={mainImage}
+                        alt={product.fields.title + z + '-' + Math.random()}
+                        hoverImage={hoverImage}
+                        mainImage={mainImage}>{product.fields.title}</p>
+                      <img alt={product.fields.title + z + '-' + Math.random()} />
+                      */
+                    }
                     <ProductTitle>
                       {product.fields.highlight && <Fragment><img alt='Destacado' src='/static/icons/star.png' />&nbsp;</Fragment> }
+                      {/* product.fields.title + z + '-' + Math.random() */}
                       {product.fields.title}
                     </ProductTitle>
                     <ProductPrice>{product.fields.price} €</ProductPrice>
