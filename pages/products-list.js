@@ -32,8 +32,10 @@ const ProductWrapper = styled.a`
 `
 
 const ProductThumbnail = styled.img`
-  height: 400px;
-  width: 300px;
+  max-height: 400px;
+  min-height: 400px;
+  min-width: 300px;
+  max-width: 300px;
   background-repeat: no-repeat;
   background-size: 327px 442px;
   background-color: #abaaaa8c;

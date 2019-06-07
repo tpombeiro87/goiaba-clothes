@@ -103,7 +103,7 @@ class ProductPage extends Component {
       : `${DOMAIN}/static/logo/big.png`
 
     const description = product.fields.description
-      ? product.fields.description.replace(/(?:\r\n|\r|\n)/g, '<br>')
+      ? product.fields.description // .replace(/(?:\r\n|\r|\n)/g, '<br>')
       : 'Sem descrição'
     const characteristics = product.fields.characteristics
       ? product.fields.characteristics // .replace(/(?:\r\n|\r|\n)/g, '<br>')
@@ -115,7 +115,7 @@ class ProductPage extends Component {
         <meta property='og:url' content={url} />
         <meta property='og:type' content='article' />
         <meta property='og:title' content={title} />
-        <meta property='og:description' content={product.fields.description.replace(/(?:\r\n|\r|\n)/g, ' ')} />
+        <meta property='og:description' content={product.fields.description ? product.fields.description.replace(/(?:\r\n|\r|\n)/g, ' ') : ''} />
         <meta property='og:image:url' content={`http:${mainImage}`} />
         <meta property='og:image:secure_url' content={`https:${mainImage}`} />
         <meta property='og:image:width' content='251' />
@@ -124,7 +124,6 @@ class ProductPage extends Component {
         <script type='application/ld+json'>{JSON.stringify(productStructedData)}</script>
       </Fragment>
     )
-    console.log(JSON.stringify(productStructedData, null, 2))
     /* eslint-enable react/jsx-sort-props */
     return (
       <AllMatchMedia>

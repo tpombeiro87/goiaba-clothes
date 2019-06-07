@@ -7,9 +7,9 @@ export const generateProductStructedData = (product) => ({
   'image': product.fields.photos.length
     ? product.fields.photos.map(photo => photo.fields.file.url)
     : [DEFAULT_PRODUCT_IMAGE],
-  'description': product.fields.description.replace(/(?:\r\n|\r|\n)/g, ' '),
+  'description': product.fields.description ? product.fields.description.replace(/(?:\r\n|\r|\n)/g, ' ') : '',
   'sku': product.fields.slug,
-  'mpn': '925872',
+  'mpn': '925872', // TODO review this
   'offers': {
     '@type': 'Offer',
     'url': `${DOMAIN}/product/${product.fields.slug}`,
