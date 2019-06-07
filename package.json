@@ -5,6 +5,7 @@
     "fetch-data": "node contentful-data/fetcher.js",
     "build": "node contentful-data/fetcher.js && next build",
     "export": "next export",
+    "postexport": "node scripts/post-export.js",
     "deploy": "npm run build && npm run export",
     "start": "NODE_ENV=production node server.js",
     "dev-next": "next",
