@@ -7,8 +7,8 @@ import {
   compactVersionMediaQuery,
   wideVersionMediaQuery,
 } from '../components/utils/responsive-utils'
-import AnalyticsContainer from '../components/analytics/analytics-container'
 import { pageContentFetcher } from '../contentful-data/utils'
+import { generateContactStructedData } from '../components/utils/google-structured-data'
 
 const HeroWrapperLink = styled.div`
   position: relative;
@@ -73,10 +73,12 @@ const Home = () => {
   const heroImg = pageData.fields.heroImage
     ? pageData.fields.heroImage.fields.file.url
     : ''
+  const metaTags = (
+    <script type='application/ld+json'>{JSON.stringify(generateContactStructedData())}</script>
+  )
   return (
     <Fragment>
-      <AnalyticsContainer />
-      <BaseLayout title='Home'>
+      <BaseLayout metaTags={metaTags} title='Home'>
         <NextLink href='/products-list' passHref prefetch>
           <HeroWrapperLink>
             <a>

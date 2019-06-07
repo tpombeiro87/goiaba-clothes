@@ -13,6 +13,7 @@ import Share from '../components/share'
 import CustomButton from '../components/custom-button'
 import { addCartItem } from '../components/utils/local-storage'
 import { DOMAIN, DEFAULT_PRODUCT_IMAGE } from '../components/utils/constants'
+import { generateProductStructedData } from '../components/utils/google-structured-data'
 
 import ErrorPage from './_error'
 
@@ -102,26 +103,28 @@ class ProductPage extends Component {
       : `${DOMAIN}/static/logo/big.png`
 
     const description = product.fields.description
-      ? product.fields.description // .replace(/(?:\r\n|\r|\n)/g, '<br>')
+      ? product.fields.description.replace(/(?:\r\n|\r|\n)/g, '<br>')
       : 'Sem descrição'
     const characteristics = product.fields.characteristics
       ? product.fields.characteristics // .replace(/(?:\r\n|\r|\n)/g, '<br>')
       : 'Sem características'
+    const productStructedData = generateProductStructedData(product)
     /* eslint-disable react/jsx-sort-props */
     const metaTags = (
       <Fragment>
         <meta property='og:url' content={url} />
         <meta property='og:type' content='article' />
         <meta property='og:title' content={title} />
-        <meta property='og:description' content={description} />
-
+        <meta property='og:description' content={product.fields.description.replace(/(?:\r\n|\r|\n)/g, ' ')} />
         <meta property='og:image:url' content={`http:${mainImage}`} />
         <meta property='og:image:secure_url' content={`https:${mainImage}`} />
         <meta property='og:image:width' content='251' />
         <meta property='og:image:height' content='334' />
         <meta property='og:image:type' content='image/jpeg' />
+        <script type='application/ld+json'>{JSON.stringify(productStructedData)}</script>
       </Fragment>
     )
+    console.log(JSON.stringify(productStructedData, null, 2))
     /* eslint-enable react/jsx-sort-props */
     return (
       <AllMatchMedia>

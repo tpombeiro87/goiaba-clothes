@@ -11,6 +11,7 @@ import CartSummary from '../components/cart-summary'
 import { getCartItems, removeCartItem, addCartItem } from '../components/utils/local-storage'
 import { productContentFetcher } from '../contentful-data/utils'
 import { compactVersionMediaQuery, wideVersionMediaQuery, AllMatchMedia } from '../components/utils/responsive-utils'
+import { SALES_EMAIL } from '../components/utils/constants'
 
 const Spacer = styled.div`
   margin-bottom: 40px;
@@ -229,10 +230,10 @@ class Cart extends Component {
                       return <p>Enviando...</p>
                     }
                     if (pageStatus === PAGE_STATUS_SENT) {
-                      return <p>O pedido de compra foi enviado com sucesso. Será contactado em breve para dar continuidade à sua compra. Caso tenha que fazer alguma alteração por favor contacte: <a href={`mailto:${process.env.SALES_EMAIL}`}>{process.env.SALES_EMAIL}</a></p>
+                      return <p>O pedido de compra foi enviado com sucesso. Será contactado em breve para dar continuidade à sua compra. Caso tenha que fazer alguma alteração por favor contacte: <a href={`mailto:${SALES_EMAIL}`}>{SALES_EMAIL}</a></p>
                     }
                     if (pageStatus === PAGE_STATUS_ERROR) {
-                      return <p>Houve um erro a processar o seu pedido. Por favor contacte nos directamente <a href={`mailto:${process.env.SALES_EMAIL}`}>{process.env.SALES_EMAIL}</a></p>
+                      return <p>Houve um erro a processar o seu pedido. Por favor contacte nos directamente <a href={`mailto:${SALES_EMAIL}`}>{SALES_EMAIL}</a></p>
                     }
                     if (pageStatus === PAGE_STATUS_FORM) {
                       return this.renderContactForm(isCompactVersionViewport)
