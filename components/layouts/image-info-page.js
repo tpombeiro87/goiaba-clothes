@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
@@ -72,13 +72,18 @@ const Img = styled.img`
   max-height:100%;
 `
 
-const ImageInfoPage = ({ pageId }) => {
+const ImageInfoPage = ({ pageId, metaTags }) => {
   const pageData = pageContentFetcher(pageId)
   const ImgSrc = pageData.fields.heroImage
     ? pageData.fields.heroImage.fields.file.url
     : ''
   return (
-    <BaseLayout title={pageData.fields.title}>
+    <BaseLayout
+      metaTags={<Fragment>
+        {metaTags}
+        <meta content={pageData.fields.seo} name='description' />
+      </Fragment>}
+      title={pageData.fields.title}>
       <Spacer />
       <Breadcrumb currentTitle={pageData.fields.title} fatherLink='/' fatherTitle='Home' />
       <Wrapper>
@@ -93,7 +98,7 @@ const ImageInfoPage = ({ pageId }) => {
 }
 
 ImageInfoPage.propTypes = {
-  ImgSrc: PropTypes.string,
+  metaTags: PropTypes.object,
   pageId: PropTypes.string,
 }
 

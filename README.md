@@ -2,12 +2,6 @@
 
 ## TODOS
 
-* seo optimization
-  * description meta tags
-  * verif headings
-  * ?set morada como business
-  * Check if Search Console, has both http:// and https:// versions, as well as the "www" and "non-www" versions.
-
 * Social links on footer
 ^ stripe integration with contentfull
 ^ lighthouse top score

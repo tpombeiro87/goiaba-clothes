@@ -84,7 +84,7 @@ class Share extends Component {
 }
 
 Share.propTypes = {
-  url: PropTypes.object,
+  url: PropTypes.string,
 }
 
 export default Share

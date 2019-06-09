@@ -121,7 +121,8 @@ class ProductPage extends Component {
         <meta property='og:image:width' content='251' />
         <meta property='og:image:height' content='334' />
         <meta property='og:image:type' content='image/jpeg' />
-        <script type='application/ld+json'>{JSON.stringify(productStructedData)}</script>
+        <script dangerouslySetInnerHTML={{ __html: productStructedData }} type='application/ld+json' />
+        <meta content={`Pagina do produto ${title}`} name='description' />
       </Fragment>
     )
     /* eslint-enable react/jsx-sort-props */

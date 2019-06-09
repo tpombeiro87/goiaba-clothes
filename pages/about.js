@@ -5,7 +5,7 @@ import { generateContactStructedData } from '../components/utils/google-structur
 
 const About = () => {
   const metaTags = (
-    <script type='application/ld+json'>{JSON.stringify(generateContactStructedData())}</script>
+    <script dangerouslySetInnerHTML={{ __html: generateContactStructedData() }} type='application/ld+json' />
   )
   return (
     <ImageInfoPage metaTags={metaTags} pageId='/about' />

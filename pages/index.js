@@ -74,25 +74,26 @@ const Home = () => {
     ? pageData.fields.heroImage.fields.file.url
     : ''
   const metaTags = (
-    <script type='application/ld+json'>{JSON.stringify(generateContactStructedData())}</script>
+    <Fragment>
+    <script dangerouslySetInnerHTML={{ __html: generateContactStructedData() }} type='application/ld+json' />
+      <meta content={pageData.fields.seo} name='description' />
+    </Fragment>
   )
   return (
-    <Fragment>
-      <BaseLayout metaTags={metaTags} title='Home'>
-        <NextLink href='/products-list' passHref prefetch>
-          <HeroWrapperLink>
-            <a>
-              <HeroTitle>Novidades</HeroTitle>
-              <HeroImg src={heroImg} />
-            </a>
-          </HeroWrapperLink>
-        </NextLink>
-        <HomeIndentity>
-          <LogoBigImg alt='logo' src='/static/logo/big.png' />
-          <HomeIndentityTitle dangerouslySetInnerHTML={{ __html: pageData.fields.body }} />
-        </HomeIndentity>
-      </BaseLayout>
-    </Fragment>
+    <BaseLayout metaTags={metaTags} title='Home Page'>
+      <NextLink href='/products-list' passHref prefetch>
+        <HeroWrapperLink>
+          <a>
+            <HeroTitle>Novidades</HeroTitle>
+            <HeroImg src={heroImg} />
+          </a>
+        </HeroWrapperLink>
+      </NextLink>
+      <HomeIndentity>
+        <LogoBigImg alt='logo' src='/static/logo/big.png' />
+        <HomeIndentityTitle dangerouslySetInnerHTML={{ __html: pageData.fields.body }} />
+      </HomeIndentity>
+    </BaseLayout>
   )
 }
 

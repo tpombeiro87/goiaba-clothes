@@ -3,7 +3,7 @@ import Link from 'next/link'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
-import RegularPage from '../components/layouts/regular-page'
+import BaseLayout from '../components/layouts/base'
 import { sortingOptions, DropdownSorter } from '../components/dropdown-sorter'
 import { products } from '../contentful-data/utils'
 import Breadcrumb from '../components/breadcrumb'
@@ -114,8 +114,14 @@ class ProductList extends Component {
 
   render () {
     const { sortedProducts, sortingBy } = this.state
+    const title = 'Colecção roupa Goiaba'
+    const metaTags = (
+      <Fragment>
+        <meta content={title} name='description' />
+      </Fragment>
+    )
     return (
-      <RegularPage>
+      <BaseLayout metaTags={metaTags} title={title}>
         <TopWrapper>
           <Breadcrumb currentTitle='Colecção' fatherLink='/' fatherTitle='Home' />
           <DropdownSorter onSortingChange={this.handleSortingChange} sortingBy={sortingBy} />
@@ -155,7 +161,7 @@ class ProductList extends Component {
               )
             })}
         </ProductListWrapper>
-      </RegularPage>
+      </BaseLayout>
     )
   }
 }

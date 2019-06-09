@@ -26,7 +26,13 @@ const Text = styled.div`
 const RegularPage = ({ pageId, metaTags, children }) => {
   const pageData = pageId ? pageContentFetcher(pageId) : { fields: {} }
   return (
-    <BaseLayout metaTags={metaTags} title={pageData.fields.title}>
+    <BaseLayout
+      metaTags={
+        <Fragment>
+          {metaTags}
+          <meta content={pageData.fields.seo} name='description' />
+        </Fragment>}
+      title={pageData.fields.title}>
       { children ||
         <Fragment>
           <Spacer />
