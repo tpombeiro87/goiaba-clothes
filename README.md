@@ -2,6 +2,9 @@
 
 ## TODOS
 
+* push
+* test structured-data/testing
+
 * Social links on footer
 ^ stripe integration with contentfull
 ^ lighthouse top score

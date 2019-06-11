@@ -37,6 +37,7 @@ export const generateContactStructedData = () => (
       '@type': 'ContactPoint',
       'email': SALES_EMAIL,
       'contactType': 'Sales contact',
+      'url': 'https://www.goiabaclothes.pt/',
     },
   })
 )
