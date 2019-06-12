@@ -88,7 +88,7 @@ const ImageInfoPage = ({ pageId, metaTags }) => {
       <Breadcrumb currentTitle={pageData.fields.title} fatherLink='/' fatherTitle='Home' />
       <Wrapper>
         <Title>{pageData.fields.title}</Title>
-        <Img src={ImgSrc} />
+        <Img alt='hero image' src={ImgSrc} />
         <InfoWrap>
           <Info dangerouslySetInnerHTML={{ __html: pageData.fields.body }} />
         </InfoWrap>

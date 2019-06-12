@@ -75,7 +75,7 @@ const Home = () => {
     : ''
   const metaTags = (
     <Fragment>
-    <script dangerouslySetInnerHTML={{ __html: generateContactStructedData() }} type='application/ld+json' />
+      <script dangerouslySetInnerHTML={{ __html: generateContactStructedData() }} type='application/ld+json' />
       <meta content={pageData.fields.seo} name='description' />
     </Fragment>
   )
@@ -85,7 +85,7 @@ const Home = () => {
         <HeroWrapperLink>
           <a>
             <HeroTitle>Novidades</HeroTitle>
-            <HeroImg src={heroImg} />
+            <HeroImg alt='Novidades imagem' src={heroImg} />
           </a>
         </HeroWrapperLink>
       </NextLink>

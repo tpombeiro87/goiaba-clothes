@@ -73,7 +73,7 @@ const CartSummary = ({ cart, onRemoveCartItem, onAddCartItem }) => {
                 return (
                   <ProductWrap key={productSlug}>
                     <Link passHref url={`/product/${productSlug}`}>
-                      <MiniImg src={imageSrc} />
+                      <MiniImg alt={cartItem.fields.title} src={imageSrc} />
                     </Link>
                     <Details>{`${cartItem.fields.title} - #${cartItem.quantity}`}</Details>
                     <ControlsWrap>

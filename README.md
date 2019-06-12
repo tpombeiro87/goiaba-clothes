@@ -2,7 +2,6 @@
 
 ## TODOS
 
-* push
 * test structured-data/testing
 
 * Social links on footer
