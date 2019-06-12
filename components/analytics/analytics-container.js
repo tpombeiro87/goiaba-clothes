@@ -39,7 +39,7 @@ const AnalyticsContainer = () => (
   <Fragment>
     <Head>
       <link href='https://www.googletagmanager.com' rel='preconnect' />
-      <link href='https://ctfassets.net/' rel='preconnect' />
+      <link href='https://images.ctfassets.net/' rel='preconnect' />
       <script dangerouslySetInnerHTML={setGTM()} />
     </Head>
     <TagManagerContainer />
