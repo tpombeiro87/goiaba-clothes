@@ -1,8 +1,9 @@
 require('dotenv').config()
+const withOffline = require('next-offline')
 
 const staticPagesExportMap = require('./scripts/pages-export')
 
-module.exports = {
+const nextConfig = {
   exportPathMap () {
     const staticPagesExport = staticPagesExportMap()
     console.log('------exportPathMap------\n', staticPagesExport)
@@ -10,9 +11,4 @@ module.exports = {
   },
 }
 
-// webpack: config => {
-//   config.node = {
-//     fs: 'empty',
-//   }
-//   return config
-// },
+module.exports = withOffline(nextConfig)

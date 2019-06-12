@@ -9,7 +9,7 @@
     "deploy": "npm run build && npm run export",
     "start": "NODE_ENV=production node server.js",
     "dev-next": "next",
-    "dev": "node server"
+    "dev": "nodemon server"
   },
   "dependencies": {
     "babel-eslint": "^10.0.1",
@@ -30,6 +30,7 @@
     "eslint-plugin-standard": "^4.0.0",
     "express": "^4.17.1",
     "next": "^8.0.0",
+    "next-offline": "^4.0.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-image-magnify": "^2.7.4",
@@ -42,6 +43,7 @@
     "babel-plugin-inline-dotenv": "^1.1.2",
     "chalk": "^2.4.2",
     "contentful": "^7.5.1",
-    "fs": "^0.0.1-security"
+    "fs": "^0.0.1-security",
+    "nodemon": "^1.19.1"
   }
 }
