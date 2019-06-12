@@ -98,7 +98,6 @@ export default class Layout extends Component {
                 : `Goiaba - site`
             }
           </title>
-          <link href='/manifest.json' rel='manifest' />
           { metaTags }
         </Head>
 
