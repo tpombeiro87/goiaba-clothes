@@ -62,7 +62,7 @@ class Slider extends Component {
     const { images, isCompactVersionViewport } = this.props
 
     return <Wrapper>
-      <Button onClick={this.handlePreviousSlide}><IconRoot svg={<LeftArrowSvg />} /></Button>
+      <Button aria-label='Slide para a imagem à esquerda' onClick={this.handlePreviousSlide}><IconRoot svg={<LeftArrowSvg />} /></Button>
       <WrapperImage>
         <ReactImageMagnify {...{
           enlargedImagePosition: isCompactVersionViewport ? 'over' : 'beside',
@@ -79,7 +79,7 @@ class Slider extends Component {
           },
         }} />
       </WrapperImage>
-      <Button onClick={this.handleNextSlide}><IconRoot svg={<RightArrowSvg />} /></Button>
+      <Button aria-label='Slide para a imagem à direita' onClick={this.handleNextSlide}><IconRoot svg={<RightArrowSvg />} /></Button>
     </Wrapper>
   }
 }

@@ -28,7 +28,7 @@ const AllPages = () => {
         <Breadcrumb currentTitle={pageTitle} fatherLink='/' fatherTitle='Home' />
         { pages.map(page =>
           <Spacer key={page.fields.pageId}>
-            <Link title={page.fields.title} url={page.fields.pageId} />
+            <Link aria-label={`Link para a pagina ${page.fields.title}`} title={page.fields.title} url={page.fields.pageId} />
           </Spacer>
         )}
       </Root>

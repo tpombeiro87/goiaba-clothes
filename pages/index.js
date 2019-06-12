@@ -83,7 +83,7 @@ const Home = () => {
     <BaseLayout metaTags={metaTags} title='Home Page'>
       <NextLink href='/products-list' passHref prefetch>
         <HeroWrapperLink>
-          <a>
+          <a aria-label='Link para a colecção'>
             <HeroTitle>Novidades</HeroTitle>
             <HeroImg alt='Novidades imagem' src={heroImg} />
           </a>

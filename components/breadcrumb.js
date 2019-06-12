@@ -38,7 +38,7 @@ const BreadcrumbWrap = styled.div`
 const Breadcrumb = ({ isVisible = true, fatherLink, fatherTitle, currentTitle }) =>
   <BreadcrumbWrap isVisible={isVisible}>
     <ul>
-      <li><NextLink href={fatherLink} passHref prefetch><a>{fatherTitle}</a></NextLink> |&nbsp;</li>
+      <li><NextLink href={fatherLink} passHref prefetch><a aria-label='fatherTitle'>{fatherTitle}</a></NextLink> |&nbsp;</li>
       <li>{currentTitle}</li>
     </ul>
   </BreadcrumbWrap>

@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import Link from 'next/link'
+import NextLink from 'next/link'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
@@ -134,8 +134,8 @@ class ProductList extends Component {
               const hoverImage = photos.length > 1 ? photos[1].fields.file.url : null
               // const z = Math.random()
               return (
-                <Link href={`/product/${product.fields.slug}`} key={product.fields.slug} passHref>
-                  <ProductWrapper>
+                <NextLink href={`/product/${product.fields.slug}`} key={product.fields.slug} passHref>
+                  <ProductWrapper alt={product.fields.title}>
                     <ProductThumbnail
                       alt={product.fields.title}
                       hoverImage={hoverImage}
@@ -157,7 +157,7 @@ class ProductList extends Component {
                     </ProductTitle>
                     <ProductPrice>{product.fields.price} €</ProductPrice>
                   </ProductWrapper>
-                </Link>
+                </NextLink>
               )
             })}
         </ProductListWrapper>

@@ -64,13 +64,13 @@ class Share extends Component {
     return (
       <Container>
         <Wrap>
-          <Anchor href={`https://www.facebook.com/sharer/sharer.php?u=${url}`} rel='noopener noreferrer' target='_blank'>
+          <Anchor aria-label='Link para partilhar no facebook' href={`https://www.facebook.com/sharer/sharer.php?u=${url}`} rel='noopener noreferrer' target='_blank'>
             <IconRoot svg={<FacebookSvg />} />
           </Anchor>
-          <Anchor href={`https://www.pinterest.pt/pin/create/button/?url=${url}&autologin=true`} rel='noopener noreferrer' target='_blank'>
+          <Anchor aria-label='Link para partilhar no pinterest' href={`https://www.pinterest.pt/pin/create/button/?url=${url}&autologin=true`} rel='noopener noreferrer' target='_blank'>
             <IconRoot svg={<PintrestSvg />} />
           </Anchor>
-          <Anchor onClick={this.handleCopyToClipboard}>
+          <Anchor aria-label='Link para copiar o link desta pagina para a area de transferencia' onClick={this.handleCopyToClipboard}>
             <IconRoot svg={<LinkSvg />} />
           </Anchor>
           { copy === COPY_ONGOING &&

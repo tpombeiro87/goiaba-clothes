@@ -61,18 +61,18 @@ const Footer = () => (
     <Section>
       <Col>
         <span>Apoio ao Cliente</span>
-        <Link secondary title='Supporte' url='/user-support' />
-        <Link secondary title='Size Guide' url='/size-guide' />
+        <Link aria-label='Link para a pagina de Supporte' secondary title='Supporte' url='/user-support' />
+        <Link aria-label='Link para a pagina de Size guide' secondary title='Size Guide' url='/size-guide' />
       </Col>
       <Col>
         <span>Informações</span>
-        <Link secondary title='Politica de Privacidade' url='/privacy-policy' />
-        <Link secondary title='Termos e Condições' url='/terms' />
+        <Link aria-label='Link para a pagina de Politica de Privacidade' secondary title='Politica de Privacidade' url='/privacy-policy' />
+        <Link aria-label='Link para a pagina de Termos e Condições' secondary title='Termos e Condições' url='/terms' />
 
       </Col>
       <Col>
         <span>Navegação</span>
-        <Link secondary title='Todas as Paginas' url='/pages-index' />
+        <Link aria-label='Link para a pagina com uma listagem de todas as paginas' secondary title='Todas as Paginas' url='/pages-index' />
       </Col>
     </Section>
     <Copyright>

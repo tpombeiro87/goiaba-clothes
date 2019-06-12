@@ -63,7 +63,7 @@ const Line3 = styled(Line)`
 `
 
 const HamburguerMenu = ({ isAcitve, onClick }) =>
-  <HamburguerWrapper onClick={onClick}>
+  <HamburguerWrapper aria-label='Menu de navegação' onClick={onClick}>
     <Svg ariaHidden version='1.1' viewBox='0 0 100 100' x='0px' xmlns='http://www.w3.org/2000/svg' y='0px'>
       <g>
         <Line1 d='M5 13h90v14H5z' isAcitve={isAcitve} />

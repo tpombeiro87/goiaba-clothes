@@ -84,7 +84,7 @@ class Error extends React.Component {
                 <Img alt='error image' src={errorImg} />
                 <Wrap>
                   { !isCompactVersionViewport && <Title title={ errorMsg } /> }
-                  <Text>Para qualquer questão por favor contacte os nosso serviços de apoio ao cliente através do email: <a href='mailto:info.goiabaclothes@gmail.com'>info.goiabaclothes@gmail.com</a></Text>
+                  <Text>Para qualquer questão por favor contacte os nosso serviços de apoio ao cliente através do email: <a aria-label='email para contactar goiagoiabaclothes' href='mailto:info.goiabaclothes@gmail.com'>info.goiabaclothes@gmail.com</a></Text>
                 </Wrap>
               </Root>
             </BaseLayout>

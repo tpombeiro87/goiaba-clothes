@@ -10,7 +10,7 @@ const InnerLink = styled.a`
 
   ${props => props.secondary
     ? `
-    color: #9D9D9C;
+    color: #0000008f;
     letter-spacing: 2px;
     font-size: 12px;
     line-height: 1;
@@ -19,7 +19,7 @@ const InnerLink = styled.a`
     padding-bottom: 18px;
 
     :hover {
-      color: black;
+      color: #9D9D9C;
     }
     `
     : `
@@ -36,11 +36,11 @@ const PlainLink = styled.a`
   align-items: center;
 `
 
-const Link = ({ url, router, title, children, secondary }) => (
+const Link = ({ url, router, title, children, secondary, ...rest }) => (
   <NextLink href={url} key={url} passHref prefetch>
     { children
-      ? <PlainLink>{children}</PlainLink>
-      : <InnerLink active={url === router.pathname} secondary={secondary}>{title}</InnerLink>
+      ? <PlainLink {...rest}>{children}</PlainLink>
+      : <InnerLink active={url === router.pathname} secondary={secondary} {...rest}>{title}</InnerLink>
     }
   </NextLink>
 )

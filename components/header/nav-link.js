@@ -59,7 +59,7 @@ Icon.propTypes = {
 
 const NavLink = ({ url, router, title, icon, onClick }) => (
   <NextLink href={url} key={url} passHref prefetch>
-    <InnerLink active={url === router.pathname} onClick={onClick}>
+    <InnerLink active={url === router.pathname} aria-label={`Link de navegação para ${title}`} onClick={onClick}>
       {icon
         ? <Icon icon={icon} title={title} />
         : title

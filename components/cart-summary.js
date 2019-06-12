@@ -61,7 +61,7 @@ const CartSummary = ({ cart, onRemoveCartItem, onAddCartItem }) => {
       <Title title='Resumo do Pedido' />
       {
         Object.keys(cart).length === 0
-          ? <NoProductsText>Sem produtos no carrinho. Pode escolher algo na <NextLink href='/products-list' passHref><a>colecção</a></NextLink>.</NoProductsText>
+          ? <NoProductsText>Sem produtos no carrinho. Pode escolher algo na <NextLink href='/products-list' passHref><a aria-label='ir para a colecção'>colecção</a></NextLink>.</NoProductsText>
           : <Wrapper>
             {
               Object.keys(cart).map(productSlug => {
@@ -72,7 +72,7 @@ const CartSummary = ({ cart, onRemoveCartItem, onAddCartItem }) => {
                 total += cartItem.quantity * cartItem.fields.price
                 return (
                   <ProductWrap key={productSlug}>
-                    <Link passHref url={`/product/${productSlug}`}>
+                    <Link aria-label={cartItem.fields.title} passHref url={`/product/${productSlug}`}>
                       <MiniImg alt={cartItem.fields.title} src={imageSrc} />
                     </Link>
                     <Details>{`${cartItem.fields.title} - #${cartItem.quantity}`}</Details>

@@ -44,7 +44,7 @@ const sortingOptions = [{
 const DropdownSorter = ({ sortingBy, onSortingChange }) =>
   <DropdownSorterWrapper>
     <span>Ordenar: </span>
-    <select onChange={onSortingChange} value={sortingBy}>
+    <select aria-label='Como ordenar lista de produtos' onChange={onSortingChange} value={sortingBy}>
       {sortingOptions.map(sortingOption => (
         <option key={sortingOption.value} value={sortingOption.value}>{sortingOption.title}</option>
       ))}

@@ -153,7 +153,7 @@ class ProductPage extends Component {
                       : `N.D.`
                     }
                   </ProductPrice>
-                  <CustomButton onClick={this.handleAddToCart}>Adicionar ao Carrinho</CustomButton>
+                  <CustomButton aria-label='Adicionar artigo ao Carrinho' onClick={this.handleAddToCart}>Adicionar ao Carrinho</CustomButton>
                   { showCartMsg && <InfoMessage>O artigo foi adicionado ao seu carrinho.</InfoMessage> }
                   <CollapsibleContainer label='Descrição'>
                     <ProductDescription>

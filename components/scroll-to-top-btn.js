@@ -63,6 +63,7 @@ const ScrollToTopBtn = ({ show, onClick }) =>
   <Transition in={show} timeout={ANIMATION_DURATION}>
     { elementState => (
       <ScrollToTopBtnWrapper
+        aria-label='Butão para ir para o topo da pagina'
         elementState={elementState}
         onClick={onClick}
       >
