@@ -18,8 +18,8 @@ const PlainLink = styled.a`
 const Logo = () => (
   <NextLink href='/' passHref prefetch>
     <PlainLink aria-label='Logo'>
-      <LogoSymbol alt='logo' src='/static/logo/big.png' />
-      <LogoText alt='logo' src='/static/logo/text.png' />
+      <LogoSymbol alt='logo' src='/static/logo/big.jpg' />
+      <LogoText alt='logo' src='/static/logo/text.jpg' />
     </PlainLink>
   </NextLink>
 )

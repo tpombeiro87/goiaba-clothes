@@ -68,7 +68,7 @@ const CartSummary = ({ cart, onRemoveCartItem, onAddCartItem }) => {
                 const cartItem = cart[productSlug]
                 const imageSrc = cartItem.fields.photos.length > 0
                   ? cartItem.fields.photos[0].fields.file.url
-                  : '/static/no-product-image.png'
+                  : '/static/no-product-image.jpg'
                 total += cartItem.quantity * cartItem.fields.price
                 return (
                   <ProductWrap key={productSlug}>

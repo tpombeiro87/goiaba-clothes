@@ -90,7 +90,7 @@ const Home = () => {
         </HeroWrapperLink>
       </NextLink>
       <HomeIndentity>
-        <LogoBigImg alt='logo' src='/static/logo/big.png' />
+        <LogoBigImg alt='logo' src='/static/logo/big.jpg' />
         <HomeIndentityTitle dangerouslySetInnerHTML={{ __html: pageData.fields.body }} />
       </HomeIndentity>
     </BaseLayout>

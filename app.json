@@ -2,7 +2,7 @@
   "name": "Goiaba clothes site",
   "description": "Goiaba clothes website",
   "repository": "https://gitlab.com/tpombeiro87/goiaba-clothes",
-  "logo": "https://www.goiabaclothes.pt/static/logo/big.png",
+  "logo": "https://www.goiabaclothes.pt/static/logo/big.jpg",
   "keywords": ["goiaba", "clothes", "site"],
   "success_url": "/"
 }
