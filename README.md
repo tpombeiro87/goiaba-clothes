@@ -2,11 +2,8 @@
 
 ## TODOS
 
-* test structured-data/testing
-
 * Social links on footer
 ^ stripe integration with contentfull
-^ lighthouse top score
 ^ client side app get pages withour reloading
 
 * heighlight section on home page

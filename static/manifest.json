@@ -1,0 +1,21 @@
+{
+  "short_name": "Goiaba clothes",
+  "name": "Goiaba clothes site",
+  "icons": [
+    {
+      "src": "/images/icons-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/static/logo/bk/massive.png",
+      "type": "image/png",
+      "sizes": "512x514"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#e84379"
+}
