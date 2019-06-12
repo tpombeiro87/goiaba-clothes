@@ -1,3 +1,5 @@
+const { join } = require('path')
+
 const express = require('express')
 const next = require('next')
 
@@ -10,10 +12,23 @@ app
   .then(() => {
     const server = express()
 
+    // this is not working
+    server.get('/service-worker.js', (req, res) => {
+      const filePath = join(__dirname, '.next', '/service-worker.js')
+      console.log('get service-worker.js - ', filePath)
+      return app.serveStatic(req, res, filePath)
+    })
+    // this is not working
+    server.get('/manifest.json', (req, res) => {
+      const filePath = join(__dirname, '/../scripts/manifest.json')
+      console.log('get manifest.json - ', filePath)
+      return app.serveStatic(req, res, filePath)
+    })
+
     server.get('/product/:id', (req, res) => {
       const actualPage = '/product'
       const queryParams = { slug: req.params.id }
-      app.render(req, res, actualPage, queryParams)
+      return app.render(req, res, actualPage, queryParams)
     })
 
     server.get('*', (req, res) => {

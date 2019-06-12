@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Component, Fragment } from 'react'
 import styled from 'styled-components'
 import NextLink from 'next/link'
 
@@ -37,7 +37,7 @@ const HeroTitle = styled.h1`
 
 const HeroImg = styled.img`
   width: 100%;
-  width: 100%;
+  max-height: 577px;
   background: #f6f5fd;
 `
 const HomeIndentity = styled.div`
@@ -68,33 +68,35 @@ const LogoBigImg = styled.img`
   }
 `
 
-const Home = () => {
-  const pageData = pageContentFetcher('/')
-  const heroImg = pageData.fields.heroImage
-    ? pageData.fields.heroImage.fields.file.url
-    : ''
-  const metaTags = (
-    <Fragment>
-      <script dangerouslySetInnerHTML={{ __html: generateContactStructedData() }} type='application/ld+json' />
-      <meta content={pageData.fields.seo} name='description' />
-    </Fragment>
-  )
-  return (
-    <BaseLayout metaTags={metaTags} title='Home Page'>
-      <NextLink href='/products-list' passHref prefetch>
-        <HeroWrapperLink>
-          <a aria-label='Link para a colecção'>
-            <HeroTitle>Novidades</HeroTitle>
-            <HeroImg alt='Novidades imagem' src={heroImg} />
-          </a>
-        </HeroWrapperLink>
-      </NextLink>
-      <HomeIndentity>
-        <LogoBigImg alt='logo' src='/static/logo/big.jpg' />
-        <HomeIndentityTitle dangerouslySetInnerHTML={{ __html: pageData.fields.body }} />
-      </HomeIndentity>
-    </BaseLayout>
-  )
+class Home extends Component {
+  render () {
+    const pageData = pageContentFetcher('/')
+    const heroImg = pageData.fields.heroImage
+      ? `${pageData.fields.heroImage.fields.file.url}?fm=jpg&fl=progressive`
+      : ''
+    const metaTags = (
+      <Fragment>
+        <script dangerouslySetInnerHTML={{ __html: generateContactStructedData() }} type='application/ld+json' />
+        <meta content={pageData.fields.seo} name='description' />
+      </Fragment>
+    )
+    return (
+      <BaseLayout metaTags={metaTags} title='Home Page'>
+        <NextLink href='/products-list' passHref prefetch>
+          <HeroWrapperLink>
+            <a aria-label='Link para a colecção'>
+              <HeroTitle>Novidades</HeroTitle>
+              <HeroImg alt='Novidades imagem' src={heroImg} />
+            </a>
+          </HeroWrapperLink>
+        </NextLink>
+        <HomeIndentity>
+          <LogoBigImg alt='logo' src='/static/logo/big.jpg' />
+          <HomeIndentityTitle dangerouslySetInnerHTML={{ __html: pageData.fields.body }} />
+        </HomeIndentity>
+      </BaseLayout>
+    )
+  }
 }
 
 export default Home

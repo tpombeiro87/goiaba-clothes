@@ -75,7 +75,7 @@ const Img = styled.img`
 const ImageInfoPage = ({ pageId, metaTags }) => {
   const pageData = pageContentFetcher(pageId)
   const ImgSrc = pageData.fields.heroImage
-    ? pageData.fields.heroImage.fields.file.url
+    ? `${pageData.fields.heroImage.fields.file.url}?fm=jpg&fl=progressive`
     : ''
   return (
     <BaseLayout

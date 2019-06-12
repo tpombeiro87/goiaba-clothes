@@ -130,8 +130,8 @@ class ProductList extends Component {
           { sortedProducts
             .map(product => {
               const photos = product.fields.photos
-              const mainImage = photos.length > 0 ? photos[0].fields.file.url : DEFAULT_PRODUCT_IMAGE
-              const hoverImage = photos.length > 1 ? photos[1].fields.file.url : null
+              const mainImage = photos.length > 0 ? `${photos[0].fields.file.url}?fm=jpg&fl=progressive` : DEFAULT_PRODUCT_IMAGE
+              const hoverImage = photos.length > 1 ? `${photos[1].fields.file.url}?fm=jpg&fl=progressive` : null
               // const z = Math.random()
               return (
                 <NextLink href={`/product/${product.fields.slug}`} key={product.fields.slug} passHref>

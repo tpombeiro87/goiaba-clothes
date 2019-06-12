@@ -31,7 +31,7 @@ const Col = styled.div`
     margin-bottom: 30px;
   }
   span {
-    padding-bottom: 7px;
+    padding-bottom: 10px;
     font-size: 14px;
     text-transform: uppercase;
     font-weight: 500;

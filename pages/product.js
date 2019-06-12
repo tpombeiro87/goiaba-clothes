@@ -137,7 +137,7 @@ class ProductPage extends Component {
               <Wrapper>
                 <Slider
                   images={product.fields.photos.length
-                    ? product.fields.photos.map(photo => photo.fields.file.url)
+                    ? product.fields.photos.map(photo => `${photo.fields.file.url}?fm=jpg&fl=progressive`)
                     : [DEFAULT_PRODUCT_IMAGE]
                   }
                   isCompactVersionViewport={isCompactVersionViewport}

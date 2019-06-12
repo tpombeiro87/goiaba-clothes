@@ -9,7 +9,7 @@
     "deploy": "npm run build && npm run export",
     "start": "NODE_ENV=production node server.js",
     "dev-next": "next",
-    "dev": "nodemon server"
+    "dev": "node server"
   },
   "dependencies": {
     "babel-eslint": "^10.0.1",
@@ -43,7 +43,6 @@
     "babel-plugin-inline-dotenv": "^1.1.2",
     "chalk": "^2.4.2",
     "contentful": "^7.5.1",
-    "fs": "^0.0.1-security",
-    "nodemon": "^1.19.1"
+    "fs": "^0.0.1-security"
   }
 }
