@@ -3,9 +3,14 @@
   "name": "Goiaba clothes site",
   "icons": [
     {
+      "src": "/static/logo/bk/medium.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
       "src": "/static/logo/bk/massive.png",
       "type": "image/png",
-      "sizes": "512x514"
+      "sizes": "512x512"
     }
   ],
   "start_url": "/",
