@@ -14,7 +14,10 @@ const InnerLink = styled.a`
     letter-spacing: 2px;
     font-size: 12px;
     line-height: 1;
-    margin-top: 10px;
+
+    padding-top: 18px;
+    padding-bottom: 18px;
+
     :hover {
       color: black;
     }

@@ -14,7 +14,7 @@ const Section = styled.section`
   width: 100%;
   flex-direction: row;
   justify-content: space-evenly;
-  padding-top: 30px;
+  padding-top: 44px;
   margin-top: 40px;
   border-top: 1px solid #c6c6c6;
 
