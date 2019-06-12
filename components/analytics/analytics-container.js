@@ -38,6 +38,8 @@ class AxeptioContainer extends React.Component {
 const AnalyticsContainer = () => (
   <Fragment>
     <Head>
+      <link href='https://www.googletagmanager.com' rel='preconnect' />
+      <link href='https://ctfassets.net/' rel='preconnect' />
       <script dangerouslySetInnerHTML={setGTM()} />
     </Head>
     <TagManagerContainer />
