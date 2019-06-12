@@ -3,6 +3,7 @@ const fs = require('fs')
 const chalk = require('chalk')
 
 const staticPagesExportMap = require('./pages-export')
+const manifestJson = require('./manifest.json')
 
 const DOMAIN = 'https://www.goiabaclothes.pt/'
 
@@ -18,6 +19,15 @@ const formatDate = (date) => {
   return [year, month, day].join('-')
 }
 
+const generateFile = (fileName, fileContent) =>
+  new Promise((resolve, reject) =>
+    fs.writeFile(fileName, fileContent, (error) => {
+      if (error) reject(error)
+      console.log(`File ${fileName} Saved!`)
+      resolve()
+    })
+  )
+
 const generateSiteMap = () =>
   staticPagesExportMap()
     .then(staticPages => {
@@ -30,13 +40,7 @@ const generateSiteMap = () =>
           </url>`).join('')}
       </urlset>`
       const fileName = 'out/sitemap.xml'
-      return new Promise((resolve, reject) =>
-        fs.writeFile(fileName, sitemapXml, (error) => {
-          if (error) reject(error)
-          console.log(`File ${fileName} Saved!`)
-          resolve()
-        })
-      )
+      return generateFile(fileName, sitemapXml)
     })
     .catch(error => {
       console.log(chalk.red('\nError occurred:'))
@@ -53,14 +57,16 @@ const generateRobotTxt = () => {
   Sitemap: ${DOMAIN}/sitemap_local.xml
   Disallow:`
 
-  return new Promise((resolve, reject) =>
-    fs.writeFile(fileName, robotsTxt, (error) => {
-      if (error) reject(error)
-      console.log(`File ${fileName} Saved!`)
-      resolve()
-    })
-  )
+  return generateFile(fileName, robotsTxt)
+}
+
+const generateManifest = () => {
+  const fileName = 'out/manifest.json'
+  const manifestText = JSON.stringify(manifestJson, null, 2)
+
+  return generateFile(fileName, manifestText)
 }
 
 generateSiteMap()
   .then(generateRobotTxt)
+  .then(generateManifest)
