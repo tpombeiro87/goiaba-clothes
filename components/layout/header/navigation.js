@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Transition } from 'react-transition-group'
 
-import { compactVersionMediaQuery } from '../utils/responsive-utils'
-import BagSvg from '../icons/bag-svg'
+import { compactVersionMediaQuery } from '../../utils/responsive-utils'
+import BagSvg from '../../icons/bag-svg'
 
 import NavLink from './nav-link'
 import HamburguerMenuA from './hamburguer-menu'

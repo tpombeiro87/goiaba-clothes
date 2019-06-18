@@ -2,33 +2,24 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import BaseLayout from '../components/layouts/base'
-import Title from '../components/title'
-import { compactVersionMediaQuery, wideVersionMediaQuery, AllMatchMedia } from '../components/utils/responsive-utils'
+import BaseLayout from '../components/layout/base'
+import Content from '../components/atomics/content'
+import { compactVersionMediaQuery, wideVersionMediaQuery } from '../components/utils/responsive-utils'
 
-const Root = styled.div`
-  margin-top: 2em;
-  margin-bottom: 40px;
+const ColumnsWrapper = styled.div`
   display: flex;
-  flex-direction: column;
 
   @media ${compactVersionMediaQuery} {
-    text-align: center;
-    align-items: center;
+    flex-direction: column;
   }
-
   @media ${wideVersionMediaQuery} {
-    flex-direction: row;
+    margin-top: 30px;
   }
-
-  max-width: 985px;
-  width: 100%;
 `
-const Wrap = styled.div`
-  display: flex;
-  flex-direction: column;
+const ContentColumn = styled.div`
   @media ${wideVersionMediaQuery} {
-    margin-left: 60px;
+    margin-left: 20px;
+    width 50%;
   }
 `
 
@@ -38,12 +29,6 @@ const Img = styled.img`
     max-height: 285px
   }
   filter: grayscale(100%);
-`
-
-const Text = styled.p`
-  letter-spacing: 2px;
-  line-height: 22px;
-  font-size: 13px;
 `
 
 class Error extends React.Component {
@@ -75,21 +60,15 @@ class Error extends React.Component {
     }
 
     return (
-      <AllMatchMedia>
-        {
-          ({ isCompactVersionViewport }) =>
-            <BaseLayout title='Error Page'>
-              <Root>
-                { isCompactVersionViewport && <Title title={ errorMsg } /> }
-                <Img alt='error image' src={errorImg} />
-                <Wrap>
-                  { !isCompactVersionViewport && <Title title={ errorMsg } /> }
-                  <Text>Para qualquer questão por favor contacte os nosso serviços de apoio ao cliente através do email: <a aria-label='email para contactar goiagoiabaclothes' href='mailto:info.goiabaclothes@gmail.com'>info.goiabaclothes@gmail.com</a></Text>
-                </Wrap>
-              </Root>
-            </BaseLayout>
-        }
-      </AllMatchMedia>
+      <BaseLayout title='Error Page'>
+        <ColumnsWrapper>
+          <Img alt='error image' src={errorImg} />
+          <ContentColumn>
+            <h2>{errorMsg}</h2>
+            <p>Para qualquer questão por favor contacte os nosso serviços de apoio ao cliente através do email: <a aria-label='email para contactar goiagoiabaclothes' href='mailto:info.goiabaclothes@gmail.com'>info.goiabaclothes@gmail.com</a></p>
+          </ContentColumn>
+        </ColumnsWrapper>
+      </BaseLayout>
     )
   }
 }

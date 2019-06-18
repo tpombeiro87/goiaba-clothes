@@ -3,7 +3,7 @@ import NextLink from 'next/link'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
-import BaseLayout from '../components/layouts/base'
+import BaseLayout from '../components/layout/base'
 import { sortingOptions, DropdownSorter } from '../components/dropdown-sorter'
 import { products } from '../contentful-data/utils'
 import Breadcrumb from '../components/breadcrumb'
@@ -13,8 +13,6 @@ const TopWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 30px;
-  margin-bottom: 10px;
 `
 
 const ProductListWrapper = styled.div`

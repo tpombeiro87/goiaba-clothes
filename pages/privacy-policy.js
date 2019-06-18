@@ -1,6 +1,6 @@
 import React from 'react'
 
-import RegularPage from '../components/layouts/regular-page'
+import RegularPage from '../components/layout/regular-page'
 
 const PrivacyPolicy = () => (
   <RegularPage pageId='/privacy-policy' />

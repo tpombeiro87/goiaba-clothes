@@ -6,8 +6,8 @@ import NextLink from 'next/link'
 import IconRoot from './icons/icon-root'
 import PlusSvg from './icons/plus-svg'
 import MinusSvg from './icons/minus-svg'
-import Link from './link'
-import Title from './title'
+import Link from './atomics/link'
+import Title from './atomics/title'
 
 const Wrapper = styled.div`
   margin-top: 30px;

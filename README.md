@@ -2,13 +2,14 @@
 
 ## TODOS
 
-* Social links on footer
-^ stripe integration with contentfull
+- bug on navigating client side to a specific product
+- cookie
 ^ client side app get pages withour reloading
+* Social links on footer
 
+^ stripe integration with contentfull
 * heighlight section on home page
 * desc e charac /n
-* carrosell image slide effect
 * Product list laazy loading
 * header basket (num product?)
 

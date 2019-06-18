@@ -4,8 +4,8 @@ import { withRouter } from 'next/router'
 import NextLink from 'next/link'
 import styled from 'styled-components'
 
-import IconRoot from '../icons/icon-root'
-import { AllMatchMedia, compactVersionMediaQuery, wideVersionMediaQuery } from '../utils/responsive-utils'
+import IconRoot from '../../icons/icon-root'
+import { AllMatchMedia, compactVersionMediaQuery, wideVersionMediaQuery } from '../../utils/responsive-utils'
 
 const InnerLink = styled.a`
   display: flex;

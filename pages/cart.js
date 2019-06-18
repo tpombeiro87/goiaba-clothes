@@ -2,50 +2,39 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import uuidv4 from 'uuid/v4'
 
-import BaseLayout from '../components/layouts/base'
+import BaseLayout from '../components/layout/base'
 import Breadcrumb from '../components/breadcrumb'
-import Title from '../components/title'
-import CustomInput from '../components/custom-input'
-import CustomButton from '../components/custom-button'
+import Title from '../components/atomics/title'
+import CustomInput from '../components/atomics/custom-input'
+import CustomButton from '../components/atomics/custom-button'
 import CartSummary from '../components/cart-summary'
 import { getCartItems, removeCartItem, addCartItem } from '../components/utils/local-storage'
 import { productContentFetcher } from '../contentful-data/utils'
 import { compactVersionMediaQuery, wideVersionMediaQuery, AllMatchMedia } from '../components/utils/responsive-utils'
 import { SALES_EMAIL } from '../components/utils/constants'
 
-const Spacer = styled.div`
-  margin-bottom: 40px;
-  width: 100%;
-`
-
 const ContentForm = styled.form`
   display: flex;
   @media ${compactVersionMediaQuery} {
     flex-direction: column;
   }
-`
-
-const Root = styled.div`
-  margin-top: 2em;
-  display: flex;
-  max-width: 985px;
   width: 100%;
 `
-
 const CartSection = styled.div`
   @media ${wideVersionMediaQuery} {
     width: 350px;
   }
-
-  margin-top: 10px;
+  width: 100%;
   margin-bottom: 30px;
   margin-right: 50px;
 `
 const InputsSection = styled.div`
   flex-grow: 1;
-  margin-top: 10px;
   margin-bottom: 30px;
   margin-right: 50px;
+  @media ${compactVersionMediaQuery} {
+    width: 100%;
+  }
 `
 
 const PAGE_STATUS_FORM = 'PAGE_STATUS_FORM'
@@ -187,30 +176,35 @@ class Cart extends Component {
     this.setState({ ...newState })
   }
 
-  renderContactForm = (isCompactVersionViewport) => {
+  renderContactForm = () => {
     const { cart } = this.state
     return (
-      <ContentForm onSubmit={this.handleSubmitRequest}>
-        { isCompactVersionViewport &&
-          <CartSection>
-            <CartSummary cart={cart} onAddCartItem={this.handleAddCartItem} onRemoveCartItem={this.handleRemoveCartItem} />
-          </CartSection>
+      <AllMatchMedia>
+        {
+          ({ isCompactVersionViewport }) =>
+            <ContentForm onSubmit={this.handleSubmitRequest}>
+              { isCompactVersionViewport &&
+                <CartSection>
+                  <CartSummary cart={cart} onAddCartItem={this.handleAddCartItem} onRemoveCartItem={this.handleRemoveCartItem} />
+                </CartSection>
+              }
+              <InputsSection>
+                <Title title='Detalhes de Faturação' />
+                { Object.keys(FIELDS).map(fieldId =>
+                  <CustomInput fieldId={fieldId} key={fieldId} {...FIELDS[fieldId]} onInputChange={this.handleInputChange} value={this.state[fieldId]} />
+                )}
+                { isCompactVersionViewport &&
+                  <CustomButton aria-label='Enviar Pedido' fullWidth type='submit'>Enviar Pedido</CustomButton> }
+              </InputsSection>
+              { !isCompactVersionViewport &&
+                <CartSection>
+                  <CartSummary cart={cart} onAddCartItem={this.handleAddCartItem} onRemoveCartItem={this.handleRemoveCartItem} />
+                  <CustomButton aria-label='Enviar Pedido' fullWidth type='submit'>Enviar Pedido</CustomButton>
+                </CartSection>
+              }
+            </ContentForm>
         }
-        <InputsSection>
-          <Title title='Detalhes de Faturação' />
-          { Object.keys(FIELDS).map(fieldId =>
-            <CustomInput fieldId={fieldId} key={fieldId} {...FIELDS[fieldId]} onInputChange={this.handleInputChange} value={this.state[fieldId]} />
-          )}
-          { isCompactVersionViewport &&
-            <CustomButton aria-label='Enviar Pedido' fullWidth type='submit'>Enviar Pedido</CustomButton> }
-        </InputsSection>
-        { !isCompactVersionViewport &&
-          <CartSection>
-            <CartSummary cart={cart} onAddCartItem={this.handleAddCartItem} onRemoveCartItem={this.handleRemoveCartItem} />
-            <CustomButton aria-label='Enviar Pedido' fullWidth type='submit'>Enviar Pedido</CustomButton>
-          </CartSection>
-        }
-      </ContentForm>
+      </AllMatchMedia>
     )
   }
 
@@ -218,32 +212,24 @@ class Cart extends Component {
     const { pageStatus } = this.state
     const pageTitle = 'Comprar'
     return (
-      <AllMatchMedia>
-        {
-          ({ isCompactVersionViewport }) =>
-            <BaseLayout title={pageTitle}>
-              <Root>
-                <Spacer>
-                  <Breadcrumb currentTitle={pageTitle} fatherLink='/' fatherTitle='Home' />
-                  {(() => {
-                    if (pageStatus === PAGE_STATUS_SENDING) {
-                      return <p>Enviando...</p>
-                    }
-                    if (pageStatus === PAGE_STATUS_SENT) {
-                      return <p>O pedido de compra foi enviado com sucesso. Será contactado em breve para dar continuidade à sua compra. Caso tenha que fazer alguma alteração por favor contacte: <a aria-label='Email para contactar goiaba' href={`mailto:${SALES_EMAIL}`}>{SALES_EMAIL}</a></p>
-                    }
-                    if (pageStatus === PAGE_STATUS_ERROR) {
-                      return <p>Houve um erro a processar o seu pedido. Por favor contacte nos directamente <a hariaLabel='Email para contactar goiaba' ref={`mailto:${SALES_EMAIL}`}>{SALES_EMAIL}</a></p>
-                    }
-                    if (pageStatus === PAGE_STATUS_FORM) {
-                      return this.renderContactForm(isCompactVersionViewport)
-                    }
-                  })()}
-                </Spacer>
-              </Root>
-            </BaseLayout>
+      <BaseLayout title={pageTitle}>
+        <Breadcrumb currentTitle={pageTitle} fatherLink='/' fatherTitle='Home' />
+        {(() => {
+          if (pageStatus === PAGE_STATUS_SENDING) {
+            return <p>Enviando...</p>
+          }
+          if (pageStatus === PAGE_STATUS_SENT) {
+            return <p>O pedido de compra foi enviado com sucesso. Será contactado em breve para dar continuidade à sua compra. Caso tenha que fazer alguma alteração por favor contacte: <a aria-label='Email para contactar goiaba' href={`mailto:${SALES_EMAIL}`}>{SALES_EMAIL}</a></p>
+          }
+          if (pageStatus === PAGE_STATUS_ERROR) {
+            return <p>Houve um erro a processar o seu pedido. Por favor contacte nos directamente <a hariaLabel='Email para contactar goiaba' ref={`mailto:${SALES_EMAIL}`}>{SALES_EMAIL}</a></p>
+          }
+          if (pageStatus === PAGE_STATUS_FORM) {
+            return this.renderContactForm()
+          }
+        })()
         }
-      </AllMatchMedia>
+      </BaseLayout>
     )
   }
 }

@@ -1,7 +1,9 @@
+import React from 'react'
+
 import { SALES_EMAIL, DOMAIN, DEFAULT_PRODUCT_IMAGE } from '../utils/constants'
 
 export const generateProductStructedData = (product) => (
-  JSON.stringify({
+  <script dangerouslySetInnerHTML={{ __html: JSON.stringify({
     '@context': 'https://schema.org/',
     '@type': 'Product',
     'name': product.fields.title,
@@ -24,11 +26,12 @@ export const generateProductStructedData = (product) => (
         'name': 'Goiaba Clothes',
       },
     },
-  })
+  }) }}
+  ype='application/ld+json' />
 )
 
 export const generateContactStructedData = () => (
-  JSON.stringify({
+  <script dangerouslySetInnerHTML={{ __html: JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'Organization',
     'url': DOMAIN,
@@ -39,5 +42,5 @@ export const generateContactStructedData = () => (
       'contactType': 'Sales contact',
       'url': 'https://www.goiabaclothes.pt/',
     },
-  })
+  }) }} type='application/ld+json' />
 )

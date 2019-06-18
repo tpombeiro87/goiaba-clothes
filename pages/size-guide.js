@@ -1,9 +1,8 @@
 import React from 'react'
 
-import RegularPage from '../components/layouts/regular-page'
+import RegularPage from '../components/layout/regular-page'
 
-const SizeGuide = () => (
+const SizeGuide = () =>
   <RegularPage pageId='/size-guide' />
-)
 
 export default SizeGuide

@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import styled from 'styled-components'
 import NextLink from 'next/link'
 
-import BaseLayout from '../components/layouts/base'
+import BaseLayout from '../components/layout/base'
 import {
   compactVersionMediaQuery,
   wideVersionMediaQuery,
@@ -38,11 +38,14 @@ const HeroTitle = styled.h1`
 const HeroImg = styled.img`
   width: 100%;
   max-height: 577px;
+  @media ${wideVersionMediaQuery} {
+    min-height: 577px;
+  }
   background: #f6f5fd;
 `
 const HomeIndentity = styled.div`
   margin-top: 40px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import NextLink from 'next/link'
 
+import Spacer from './atomics/spacer'
 import { compactVersionMediaQuery } from './utils/responsive-utils'
 
 // This is not working because almatch media n bomba ao inticio ?
@@ -36,12 +37,14 @@ const BreadcrumbWrap = styled.div`
 `
 
 const Breadcrumb = ({ isVisible = true, fatherLink, fatherTitle, currentTitle }) =>
-  <BreadcrumbWrap isVisible={isVisible}>
-    <ul>
-      <li><NextLink href={fatherLink} passHref prefetch><a aria-label='fatherTitle'>{fatherTitle}</a></NextLink> |&nbsp;</li>
-      <li>{currentTitle}</li>
-    </ul>
-  </BreadcrumbWrap>
+  <Spacer bottom={2} top={2}>
+    <BreadcrumbWrap isVisible={isVisible}>
+      <ul>
+        <li><NextLink href={fatherLink} passHref prefetch><a aria-label='fatherTitle'>{fatherTitle}</a></NextLink> |&nbsp;</li>
+        <li>{currentTitle}</li>
+      </ul>
+    </BreadcrumbWrap>
+  </Spacer>
 
 Breadcrumb.propTypes = {
   isVisible: PropTypes.bool,

@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import { compactVersionMediaQuery, wideVersionMediaQuery } from '../utils/responsive-utils'
+import { compactVersionMediaQuery, wideVersionMediaQuery } from '../../utils/responsive-utils'
 
 import Logo from './logo'
 import Navigation from './navigation'

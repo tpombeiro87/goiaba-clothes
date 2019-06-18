@@ -3,14 +3,14 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { withRouter } from 'next/router'
 
-import BaseLayout from '../components/layouts/base'
+import BaseLayout from '../components/layout/base'
 import Slider from '../components/slider'
 import { productContentFetcher } from '../contentful-data/utils'
 import { CollapsibleContainer } from '../components/collapsible'
 import { compactVersionMediaQuery, AllMatchMedia } from '../components/utils/responsive-utils'
 import Breadcrumb from '../components/breadcrumb'
 import Share from '../components/share'
-import CustomButton from '../components/custom-button'
+import CustomButton from '../components/atomics/custom-button'
 import { addCartItem } from '../components/utils/local-storage'
 import { DOMAIN, DEFAULT_PRODUCT_IMAGE } from '../components/utils/constants'
 import { generateProductStructedData } from '../components/utils/google-structured-data'
@@ -28,13 +28,9 @@ const Wrapper = styled.div`
   }
 `
 
-const Spacer = styled.div`
-  margin-top: 30px;
-  margin-bottom: 10px;
-`
-
 const InfoWrapper = styled.div`
   margin-left: 60px;
+  min-width: 442px;
   @media ${compactVersionMediaQuery} {
       margin-left: 40px;
   }
@@ -108,7 +104,6 @@ class ProductPage extends Component {
     const characteristics = product.fields.characteristics
       ? product.fields.characteristics // .replace(/(?:\r\n|\r|\n)/g, '<br>')
       : 'Sem características'
-    const productStructedData = generateProductStructedData(product)
     /* eslint-disable react/jsx-sort-props */
     const metaTags = (
       <Fragment>
@@ -121,7 +116,7 @@ class ProductPage extends Component {
         <meta property='og:image:width' content='251' />
         <meta property='og:image:height' content='334' />
         <meta property='og:image:type' content='image/jpeg' />
-        <script dangerouslySetInnerHTML={{ __html: productStructedData }} type='application/ld+json' />
+        { generateProductStructedData(product) }
         <meta content={`Pagina do produto ${title}`} name='description' />
       </Fragment>
     )
@@ -131,9 +126,7 @@ class ProductPage extends Component {
         {
           ({ isCompactVersionViewport }) =>
             <BaseLayout metaTags={metaTags} title={title}>
-              <Spacer>
-                <Breadcrumb currentTitle={title} fatherLink='/products-list' fatherTitle='Colecção' isVisible />
-              </Spacer>
+              <Breadcrumb currentTitle={title} fatherLink='/products-list' fatherTitle='Colecção' isVisible />
               <Wrapper>
                 <Slider
                   images={product.fields.photos.length

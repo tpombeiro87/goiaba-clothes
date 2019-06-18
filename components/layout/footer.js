@@ -1,9 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { compactVersionMediaQuery, wideVersionMediaQuery } from '../components/utils/responsive-utils'
-
-import Link from './link'
+import { compactVersionMediaQuery, wideVersionMediaQuery } from '../utils/responsive-utils'
+import Link from '../atomics/link'
 
 const FooterContainer = styled.footer`
   width: 100%;
@@ -57,7 +56,7 @@ const Copyright = styled.section`
 `
 
 const Footer = () => (
-  <FooterContainer size='huge'>
+  <FooterContainer>
     <Section>
       <Col>
         <span>Apoio ao Cliente</span>

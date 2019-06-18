@@ -4,9 +4,10 @@ import Head from 'next/head'
 import styled, { injectGlobal } from 'styled-components'
 
 import { tinyVersionMediaQuery, wideVersionMediaQuery } from '../utils/responsive-utils'
-import Header from '../header/index.js'
-import Footer from '../footer'
-import ScrollToTopBtn from '../scroll-to-top-btn'
+
+import Header from './header'
+import ScrollToTopBtn from './scroll-to-top-btn'
+import Footer from './footer'
 
 injectGlobal`
   html, body, #root {
@@ -29,17 +30,23 @@ const Root = styled.div`
 
 const Main = styled.main`
   min-width: 320px;
-  width: 100%;
   min-height: calc(100vh - 270px);
-  padding-left: 20px;
-  padding-right: 20px;
+
+
+  margin-bottom: 1em;
   margin-right: auto;
   margin-left: auto;
+  width: 100%;
   @media ${wideVersionMediaQuery} {
-    margin-top: 85px;
-    max-width: 985px;
+    margin-top: 4.68em;
+    min-width: 61.5em;
+    max-width: 61.5em;
   }
+
+  padding-left: 1em;
+  padding-right: 1em;
   @media ${tinyVersionMediaQuery} {
+    margin-top: 10px;
     padding-left: 15px;
     padding-right: 15px;
   }
