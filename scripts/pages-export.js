@@ -10,7 +10,7 @@ const formatExportMap = ({ path, page, query }) => {
   }
 }
 
-const staticPagesExportMap = async () => {
+const staticPagesExportMap = () => {
   let staticPages = {
     ...formatExportMap({
       page: '/products-list',
@@ -23,6 +23,9 @@ const staticPagesExportMap = async () => {
     ...formatExportMap({
       page: '/_error',
       path: '/404.html',
+      query: {
+        order: -1,
+      },
     }),
   }
   let staticProducts = {}

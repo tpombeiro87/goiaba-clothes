@@ -28,28 +28,28 @@ const generateFile = (fileName, fileContent) =>
     })
   )
 
-const generateSiteMap = () =>
-  staticPagesExportMap()
-    .then(staticPages => {
-      console.log(staticPages)
-      const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
-        <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-          ${Object.keys(staticPages).map(path => `<url>
-            <loc>${DOMAIN}${path}</loc>
-            <lastmod>${formatDate(new Date())}</lastmod>
-          </url>`).join('')}
-      </urlset>`
-      const fileName = 'out/sitemap.xml'
-      return generateFile(fileName, sitemapXml)
-    })
-    .catch(error => {
-      console.log(chalk.red('\nError occurred:'))
-      if (error.stack) {
-        console.error(error.stack)
-        return
-      }
-      console.error(error)
-    })
+const generateSiteMap = async () => {
+  try {
+    const staticPages = staticPagesExportMap()
+    console.log(staticPages)
+    const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
+      <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+        ${Object.keys(staticPages).map(path => `<url>
+          <loc>${DOMAIN}${path}</loc>
+          <lastmod>${formatDate(new Date())}</lastmod>
+        </url>`).join('')}
+    </urlset>`
+    const fileName = 'out/sitemap.xml'
+    return generateFile(fileName, sitemapXml)
+  } catch (error) {
+    console.log(chalk.red('\nError occurred:'))
+    if (error.stack) {
+      console.error(error.stack)
+      return
+    }
+    console.error(error)
+  }
+}
 
 const generateRobotTxt = () => {
   const fileName = 'out/robots.txt'

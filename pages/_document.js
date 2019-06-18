@@ -6,14 +6,13 @@ import AnalyticsContainer from '../components/analytics/analytics-container'
 
 export default class MyDocument extends Document {
   static async getInitialProps (ctx) {
+    // server side setup of styled-components generated css
     const sheet = new ServerStyleSheet()
-
     const originalRenderPage = ctx.renderPage
     ctx.renderPage = () =>
       originalRenderPage({
         enhanceApp: App => props => sheet.collectStyles(<App {...props} />),
       })
-
     const initialProps = await Document.getInitialProps(ctx)
     return {
       ...initialProps,

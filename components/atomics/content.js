@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-const ContentElement = styled.main`
+export const ContentElement = styled.main`
   letter-spacing: 2px;
   line-height: 22px;
   font-size: 13px;

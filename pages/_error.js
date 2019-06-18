@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import BaseLayout from '../components/layout/base'
-import Content from '../components/atomics/content'
+import { ContentElement } from '../components/atomics/content'
 import { compactVersionMediaQuery, wideVersionMediaQuery } from '../components/utils/responsive-utils'
 
 const ColumnsWrapper = styled.div`
@@ -64,8 +64,10 @@ class Error extends React.Component {
         <ColumnsWrapper>
           <Img alt='error image' src={errorImg} />
           <ContentColumn>
-            <h2>{errorMsg}</h2>
-            <p>Para qualquer questão por favor contacte os nosso serviços de apoio ao cliente através do email: <a aria-label='email para contactar goiagoiabaclothes' href='mailto:info.goiabaclothes@gmail.com'>info.goiabaclothes@gmail.com</a></p>
+            <ContentElement>
+              <h2>{errorMsg}</h2>
+              <p>Para qualquer questão por favor contacte os nosso serviços de apoio ao cliente através do email: <a aria-label='email para contactar goiagoiabaclothes' href='mailto:info.goiabaclothes@gmail.com'>info.goiabaclothes@gmail.com</a></p>
+            </ContentElement>
           </ContentColumn>
         </ColumnsWrapper>
       </BaseLayout>
