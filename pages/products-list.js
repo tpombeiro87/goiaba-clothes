@@ -35,7 +35,7 @@ const ProductThumbnail = styled.img`
   min-width: 300px;
   max-width: 300px;
   background-repeat: no-repeat;
-  background-size: 327px 442px;
+  background-size: 300px 400px;
   background-color: #abaaaa8c;
   ${props => `
     content: url('${props.mainImage}');
