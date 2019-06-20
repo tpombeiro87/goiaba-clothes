@@ -12,13 +12,13 @@ app
   .then(() => {
     const server = express()
 
-    // this is not working
+    // TODO this is not working in dev
     server.get('/service-worker.js', (req, res) => {
       const filePath = join(__dirname, '.next', '/service-worker.js')
       console.log('get service-worker.js - ', filePath)
       return app.serveStatic(req, res, filePath)
     })
-    // this is not working
+    // TODO this is not working in dev
     server.get('/manifest.json', (req, res) => {
       const filePath = join(__dirname, '/../scripts/manifest.json')
       console.log('get manifest.json - ', filePath)
