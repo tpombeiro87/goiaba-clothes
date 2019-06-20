@@ -14,6 +14,9 @@ import CustomButton from '../components/atomics/custom-button'
 import { addCartItem } from '../components/utils/local-storage'
 import { DOMAIN, DEFAULT_PRODUCT_IMAGE } from '../components/utils/constants'
 import { generateProductStructedData } from '../components/utils/google-structured-data'
+import InfoMsg from '../components/atomics/info-msg'
+import Title from '../components/atomics/title'
+import Spacer from '../components/atomics/spacer'
 
 import ErrorPage from './_error'
 
@@ -38,39 +41,6 @@ const InfoWrapper = styled.div`
   flex-direction: column;
 `
 
-const ProductTitle = styled.h1`
-  font-size: 18px;
-  text-transform: uppercase;
-  font-weight: bold;
-  line-height: 24px;
-  letter-spacing: 3px;
-  color: #000;
-`
-
-const ProductDescription = styled.h2`
-  padding: 0px 20px 10px 10px;
-  color: #000;
-  font-size: 12px;
-  letter-spacing: 2px;
-  line-height: 23px;
-  font-weight: 400;
-`
-
-const ProductPrice = styled.h3`
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  font-stretch: 100%;
-  font-weight: 700;
-  color: #000;
-  line-height: 20px;
-  letter-spacing: 3px;
-`
-
-const InfoMessage = styled.h3`
-  font-size: 14px;
-  color: #9E9E9E;
-`
-
 class ProductPage extends Component {
   state = {
     showCartMsg: false,
@@ -81,6 +51,30 @@ class ProductPage extends Component {
     const slug = router.query.slug
     addCartItem(slug)
     this.setState({ showCartMsg: true })
+  }
+
+  generateMetaTags = (url, product) => {
+    const mainImage = product.fields.photos.length > 0
+      ? `${product.fields.photos[0].fields.file.url}`
+      : `${DOMAIN}/static/logo/big.png`
+
+    /* eslint-disable react/jsx-sort-props */
+    return (
+      <Fragment>
+        <meta property='og:url' content={url} />
+        <meta property='og:type' content='article' />
+        <meta property='og:title' content={product.fields.title} />
+        <meta property='og:description' content={product.fields.description ? product.fields.description.replace(/(?:\r\n|\r|\n)/g, ' ') : ''} />
+        <meta property='og:image:url' content={`http:${mainImage}`} />
+        <meta property='og:image:secure_url' content={`https:${mainImage}`} />
+        <meta property='og:image:width' content='251' />
+        <meta property='og:image:height' content='334' />
+        <meta property='og:image:type' content='image/jpeg' />
+        { generateProductStructedData(product) }
+        <meta content={`Pagina do produto ${product.fields.title}`} name='description' />
+      </Fragment>
+    )
+    /* eslint-enable react/jsx-sort-props */
   }
 
   render () {
@@ -94,9 +88,6 @@ class ProductPage extends Component {
     }
     const title = product.fields.title
     const url = `${DOMAIN}${router.asPath}`
-    const mainImage = product.fields.photos.length > 0
-      ? `${product.fields.photos[0].fields.file.url}`
-      : `${DOMAIN}/static/logo/big.png`
 
     const description = product.fields.description
       ? product.fields.description // .replace(/(?:\r\n|\r|\n)/g, '<br>')
@@ -104,28 +95,12 @@ class ProductPage extends Component {
     const characteristics = product.fields.characteristics
       ? product.fields.characteristics // .replace(/(?:\r\n|\r|\n)/g, '<br>')
       : 'Sem características'
-    /* eslint-disable react/jsx-sort-props */
-    const metaTags = (
-      <Fragment>
-        <meta property='og:url' content={url} />
-        <meta property='og:type' content='article' />
-        <meta property='og:title' content={title} />
-        <meta property='og:description' content={product.fields.description ? product.fields.description.replace(/(?:\r\n|\r|\n)/g, ' ') : ''} />
-        <meta property='og:image:url' content={`http:${mainImage}`} />
-        <meta property='og:image:secure_url' content={`https:${mainImage}`} />
-        <meta property='og:image:width' content='251' />
-        <meta property='og:image:height' content='334' />
-        <meta property='og:image:type' content='image/jpeg' />
-        { generateProductStructedData(product) }
-        <meta content={`Pagina do produto ${title}`} name='description' />
-      </Fragment>
-    )
-    /* eslint-enable react/jsx-sort-props */
+
     return (
       <AllMatchMedia>
         {
           ({ isCompactVersionViewport }) =>
-            <BaseLayout metaTags={metaTags} title={title}>
+            <BaseLayout metaTags={this.generateMetaTags(url, product)} title={title}>
               <Breadcrumb currentTitle={title} fatherLink='/products-list' fatherTitle='Colecção' isVisible />
               <Wrapper>
                 <Slider
@@ -136,30 +111,36 @@ class ProductPage extends Component {
                   isCompactVersionViewport={isCompactVersionViewport}
                 />
                 <InfoWrapper>
-                  <ProductTitle>
+                  <Title bold='bold' size='midd'>
                     {product.fields.highlight && <Fragment><img alt='Destacado' src='/static/icons/star.png' />&nbsp;</Fragment> }
                     {title}
-                  </ProductTitle>
-                  <ProductPrice>
+                  </Title>
+                  <Title bold='700' size='small'>
                     {product.fields.price
                       ? `${(product.fields.price).toFixed(2)} €`
                       : `N.D.`
                     }
-                  </ProductPrice>
+                  </Title>
                   <CustomButton aria-label='Adicionar artigo ao Carrinho' onClick={this.handleAddToCart}>Adicionar ao Carrinho</CustomButton>
-                  { showCartMsg && <InfoMessage>O artigo foi adicionado ao seu carrinho.</InfoMessage> }
+                  { showCartMsg && <InfoMsg msg='O artigo foi adicionado ao seu carrinho.' /> }
                   <CollapsibleContainer label='Descrição'>
-                    <ProductDescription>
-                      {description}
-                    </ProductDescription>
+                    <Spacer bottom={1} left={1}>
+                      <Title bold='400' size='small' uppercase={false}>
+                        {description}
+                      </Title>
+                    </Spacer>
                   </CollapsibleContainer>
                   <CollapsibleContainer label='Características'>
-                    <ProductDescription>
-                      {characteristics}
-                    </ProductDescription>
+                    <Spacer bottom={1} left={1}>
+                      <Title bold='400' size='small' uppercase={false}>
+                        {characteristics}
+                      </Title>
+                    </Spacer>
                   </CollapsibleContainer>
                   <CollapsibleContainer label='Partilhar'>
-                    <Share url={url} />
+                    <Spacer bottom={1} left={1} top={1}>
+                      <Share url={url} />
+                    </Spacer>
                   </CollapsibleContainer>
 
                 </InfoWrapper>

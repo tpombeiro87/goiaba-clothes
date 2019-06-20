@@ -6,6 +6,7 @@ import IconRoot from '../components/icons/icon-root'
 import FacebookSvg from '../components/icons/facebook-svg'
 import LinkSvg from '../components/icons/link-svg'
 import PintrestSvg from '../components/icons/pintrest-svg'
+import InfoMsg from '../components/atomics/info-msg'
 
 const COPY_NOT_STARTED = 'COPY_NOT_STARTED'
 const COPY_ONGOING = 'COPY_ONGOING'
@@ -33,11 +34,6 @@ const CopyInput = styled.input`
 
 const Anchor = styled.a`
   cursor: pointer;
-`
-
-const InfoMessage = styled.h3`
-  font-size: 14px;
-  color: #9E9E9E;
 `
 
 class Share extends Component {
@@ -77,7 +73,7 @@ class Share extends Component {
             <CopyInput innerRef={this.textArea} value={url} />
           }
         </Wrap>
-        {copy === COPY_SUCCESS && <InfoMessage>O link deste artigo foi copiado. Pode partilhar colando onde quiser. </InfoMessage>}
+        {copy === COPY_SUCCESS && <InfoMsg msg='O link deste artigo foi copiado. Pode partilhar colando onde quiser.' />}
       </Container>
     )
   }

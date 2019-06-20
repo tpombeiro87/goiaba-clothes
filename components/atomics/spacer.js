@@ -4,12 +4,11 @@ import styled from 'styled-components'
 
 const SpacerElement = styled.div`
   width: 100%;
-  ${props => `
-    margin-bottom: ${props.bottom}em;
-    margin-left: ${props.left}em;
-    margin-right: ${props.right}em;
-    margin-top: ${props.top}em;
-  `}
+
+  ${props => props.bottom && `margin-bottom: ${props.bottom}em;`}
+  ${props => props.left && `margin-left: ${props.left}em;`}
+  ${props => props.right && `margin-right: ${props.right}em;`}
+  ${props => props.top && `margin-top: ${props.top}em;`}
 `
 const Spacer = ({ bottom, left, right, top, children }) =>
   <SpacerElement bottom={bottom} left={left} right={right} top={top}>

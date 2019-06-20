@@ -27,7 +27,7 @@ export const generateProductStructedData = (product) => (
       },
     },
   }) }}
-  ype='application/ld+json' />
+  type='application/ld+json' />
 )
 
 export const generateContactStructedData = () => (
