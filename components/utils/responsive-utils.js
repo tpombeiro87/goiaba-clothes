@@ -24,7 +24,7 @@ export class AllMatchMedia extends Component {
 
   state = {}
 
-  componentWillMount () {
+  componentDidMount () {
     if (typeof window === 'undefined') return
     window.addEventListener('resize', this.updateMatch)
     this.updateMatch()
