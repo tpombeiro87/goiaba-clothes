@@ -75,7 +75,7 @@ class Home extends Component {
   render () {
     const pageData = pageContentFetcher('/')
     const heroImg = pageData.fields.heroImage
-      ? `${pageData.fields.heroImage.fields.file.url}?fm=jpg&fl=progressive`
+      ? `${pageData.fields.heroImage.fields.file.url}?fm=jpg&fl=progressive&q=50&bg=rgb:d3d3d3`
       : ''
     const metaTags = (
       <Fragment>
