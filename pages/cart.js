@@ -138,7 +138,7 @@ class Cart extends Component {
     })
     const { cart } = this.state
 
-    fetch('https://goiaba-clothes-be.tpombeiro.now.sh', {
+    fetch('https://goiaba-clothes-be.tpombeiro87.now.sh', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
