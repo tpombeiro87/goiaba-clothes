@@ -4,6 +4,7 @@ const chalk = require('chalk')
 
 const staticPagesExportMap = require('./pages-export')
 const manifestJson = require('./manifest.json')
+const invalidateCache = require('./invalidate-cache')
 
 const DOMAIN = 'https://www.goiabaclothes.pt/'
 
@@ -44,10 +45,10 @@ const generateSiteMap = async () => {
   } catch (error) {
     console.log(chalk.red('\nError occurred:'))
     if (error.stack) {
-      console.error(error.stack)
+      console.log(error.stack)
       return
     }
-    console.error(error)
+    console.log(error)
   }
 }
 
@@ -70,3 +71,4 @@ const generateManifest = () => {
 generateSiteMap()
   .then(generateRobotTxt)
   .then(generateManifest)
+  .then(invalidateCache)
