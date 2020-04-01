@@ -5,8 +5,8 @@ const contentful = require('contentful')
 const chalk = require('chalk')
 
 const client = contentful.createClient({
-  space: process.env.SPACE_ID,
-  accessToken: process.env.ACCESS_TOKEN,
+  space: process.env.SPACE_ID || 'his6ww2xbyvl',
+  accessToken: process.env.ACCESS_TOKEN || '7266f65943b1b8c6278717f0a9005ca7c697539fb1fafd027cd91ffa4686eccb',
 })
 
 const fetchContentFulData = () => {
